@@ -1,7 +1,7 @@
-package TP2;
+package TP3;
 
 /**
- * @author Mariyam Hanfaoui, 2240026
+ * @author Mariyam Hanfaoui
  */
 
 public class Departement {
