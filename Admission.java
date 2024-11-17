@@ -1,4 +1,4 @@
-package TP2;
+package TP3;
 
 /**
  * @author Mariyam Hanfaoui
@@ -19,8 +19,7 @@ public class Admission {
     private Departement departement;
     
     // Méthode constructeur
-    public Admission(int idAdmission, boolean chirurgieProgrammee, String dateAdmission, String dateChirurgie, String dateConge, 
-            boolean televiseurLoue, boolean telephoneLoue, Patient patient, Lit lit, Medecin medecin, Departement departement) {
+    public Admission(int idAdmission, boolean chirurgieProgrammee, String dateAdmission, String dateChirurgie, String dateConge, boolean televiseurLoue, boolean telephoneLoue, Patient patient, Lit lit, Medecin medecin, Departement departement) {
         this.idAdmission = idAdmission;
         this.chirurgieProgrammee = chirurgieProgrammee;
         this.dateAdmission = dateAdmission;
@@ -33,7 +32,6 @@ public class Admission {
         this.medecin = medecin;
         this.departement = departement;
     }
-    
     
     // Méthodes accesseurs
     public int getIdAdmission(){
