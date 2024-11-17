@@ -1,4 +1,4 @@
-package TP2;
+package TP3;
 
 /**
  *@author Leen Al Harash
@@ -16,8 +16,8 @@ public class Personne {
     // Méthode toString
     @Override
     public String toString(){
-        return nom + ", " + prenom + ". Adresse: " + adresse + ", " + ville
-                + ", " + province + ". \nCodePostal: " + codePostal + ". Telephone: " + telephone;
+        return "Nom du patient: " + nom + ", " + prenom + "\nAdresse: " + adresse + ", " + ville
+                + ", " + province + "\nCode Postal: " + codePostal + "\nNuméro de téléphone: " + telephone;
     }
     
     // Méthode constructeur
