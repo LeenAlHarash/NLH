@@ -1,21 +1,20 @@
-package tp2;
+package TP3;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author leenz
+ * @author Leen Al Harash
  */
+
 public class AuthentificationINT extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(AuthentificationINT.class.getResource("sample.fxml")); 
-        Scene scene = new Scene(fxmlLoader.load()); 
+        FXMLLoader fxmlLoader = new FXMLLoader(AuthentificationINT.class.getResource("AuthenSAMPLE.fxml")); 
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Page d'authentification");
         stage.setScene(scene);
         stage.show();
