@@ -1,14 +1,15 @@
 package TP3;
 
+// Importations
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author Mariyam Hanfaoui
+ * @author Hanfaoui Mariyam
  */
+
 public class TP2Medecin extends Application {
     
     @Override
@@ -25,6 +26,5 @@ public class TP2Medecin extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    }   
 }
