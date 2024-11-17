@@ -1,9 +1,10 @@
-package TP2;
+package TP3;
 
 import java.util.Objects;
 
+
 /**
- * @author Leen Al Harash && Benjamin Melis
+ * @author Leen Al Harash
  */
 
 public class Patient extends Personne {   
@@ -16,12 +17,11 @@ public class Patient extends Personne {
     // Méthode toString
     @Override
     public String toString(){
-        return "Numero RAMQ: " + numRAMQ + "\nDate de Naissance: " + dateNaissance
-                + "\nAssurance: " + assurance;
+        return super.toString() + "\nNumero RAMQ: " + numRAMQ + "\nDate de Naissance du patient: " + dateNaissance
+                + "" + assurance.toString() + "\nAge du patient: " + age;
     }
     
-    
-    // Méthode equals - Benjamin
+    // Méthode equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -30,19 +30,19 @@ public class Patient extends Personne {
         return numRAMQ.equals(patient.numRAMQ);
     }
 
-    // Méthode hashCode - Benjamin
+    // Méthode hashCode
     @Override
     public int hashCode() {
         return Objects.hash(numRAMQ);
     }
     
-    
     // Méthode constructeur
     public Patient(String numRAMQ, String dateNaissance, Assurance assurance, String nom, String prenom, 
-            String adresse, String ville, String province, String codePostal, String telephone) {
+            String adresse, String ville, String province, String codePostal, String telephone, int age) {
         super(nom, prenom, adresse, ville, province, codePostal, telephone);
         this.numRAMQ = numRAMQ;
         this.dateNaissance = dateNaissance;
+        this.age = age;
         this.assurance = assurance;
     }
     
