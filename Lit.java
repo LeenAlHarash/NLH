@@ -1,7 +1,7 @@
-package TP2;
+package TP3;
 
 /**
- * @author Mariyam Hanfaoui, 2240026
+ * @author Mariyam Hanfaoui
  */
 
 public class Lit {   
@@ -18,7 +18,6 @@ public class Lit {
         this.type = type;
         this.departement = departement;
     }
-    
     
     // Méthodes accesseurs
     public String getNumeroLit(){
