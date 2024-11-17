@@ -1,4 +1,4 @@
-package TP2;
+package TP3;
 
 /**
  * @author Leen Al Harash
@@ -37,6 +37,6 @@ public class Assurance {
     // Méthode toString
     @Override
     public String toString(){
-        return "IDAssurance: " + IDAssurance + "Nom de Compagnie: " + nomCompagnie;
+        return "\nIDAssurance: " + IDAssurance + "\nNom de l'assurance: " + nomCompagnie;
     }
 }
