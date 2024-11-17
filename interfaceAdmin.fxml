@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp3.interfaceAdminController">
+   <children>
+      <TabPane layoutY="46.0" prefHeight="461.0" prefWidth="695.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="adminListePatients" text="Liste des patients">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="532.0" layoutY="14.0" />
+                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de vos patients">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <ListView fx:id="adminListePatient" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+          <Tab fx:id="adminListeMedecins" text="Liste de Medecins">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="695.0">
+                     <children>
+                        <TextField layoutX="532.0" layoutY="14.0" />
+                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Medecins">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <ListView fx:id="adminListeMedecin" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            <Tab fx:id="adminListePreposes" text="Liste de Preposes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="436.0">
+                     <children>
+                        <TextField layoutX="532.0" layoutY="14.0" />
+                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="adminListePrepose" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Preposes" wrappingWidth="537.9453125">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="adminAjouterMedecin" text="Ajouter un Medecin">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="fieldNumPermis" layoutX="153.0" layoutY="75.0" prefHeight="25.0" prefWidth="130.0" />
+                        <Label layoutX="20.0" layoutY="78.0" text="Numero de Permis">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Medecin">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="fieldNomUtilisateur" layoutX="153.0" layoutY="125.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldNumTelephoneMedecin" layoutX="520.0" layoutY="275.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldCodePostalMedecin" layoutX="520.0" layoutY="225.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldProvinceMedecin" layoutX="520.0" layoutY="175.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldVilleMedecin" layoutX="520.0" layoutY="125.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldAdresseMedecin" layoutX="520.0" layoutY="75.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldPrenomMedecin" layoutX="153.0" layoutY="275.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldNomMedecin" layoutX="153.0" layoutY="225.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldMotPasse" layoutX="153.0" layoutY="175.0" prefHeight="25.0" prefWidth="130.0" />
+                        <Label layoutX="308.0" layoutY="278.0" text="Numero de telephone du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="228.0" text="Code Postal du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="178.0" text="Province du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="128.0" text="Ville du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="78.0" text="Adresse du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="278.0" text="Prenom du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="228.0" text="Nom du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="178.0" text="Mot de Passe">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="128.0" text="Nom d'Utilisateur">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="598.0" layoutY="371.0" mnemonicParsing="false" text="Ajouter" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="adminEtatAdmissions" text="Etat des Admissions">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="532.0" layoutY="14.0" />
+                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat de Admissions">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <ListView fx:id="adminEtatAdmission" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="adminModifierMedecin" text="Modifier un Medecin">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="fieldNumPermis1" layoutX="153.0" layoutY="75.0" prefHeight="25.0" prefWidth="130.0" />
+                        <Label layoutX="20.0" layoutY="78.0" text="Numero de Permis">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier/Supprimer un Medecin">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="fieldNomUtilisateur1" layoutX="153.0" layoutY="125.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldNumTelephoneMedecin1" layoutX="520.0" layoutY="275.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldCodePostalMedecin1" layoutX="520.0" layoutY="225.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldProvinceMedecin1" layoutX="520.0" layoutY="175.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldVilleMedecin1" layoutX="520.0" layoutY="125.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldAdresseMedecin1" layoutX="520.0" layoutY="75.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldPrenomMedecin1" layoutX="153.0" layoutY="275.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldNomMedecin1" layoutX="153.0" layoutY="225.0" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="fieldMotPasse1" layoutX="153.0" layoutY="175.0" prefHeight="25.0" prefWidth="130.0" />
+                        <Label layoutX="308.0" layoutY="278.0" text="Numero de telephone du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="228.0" text="Code Postal du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="178.0" text="Province du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="128.0" text="Ville du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="308.0" layoutY="78.0" text="Adresse du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="278.0" text="Prenom du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="228.0" text="Nom du Medecin">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="178.0" text="Mot de Passe">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="128.0" text="Nom d'Utilisateur">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="adminSupprimer" layoutX="578.0" layoutY="381.0" mnemonicParsing="false" text="Supprimer" />
+                        <ComboBox fx:id="selectionMedecin" layoutX="510.0" layoutY="12.0" onAction="#comboMedecin" prefWidth="150.0" />
+                        <Button fx:id="adminModification" layoutX="490.0" layoutY="381.0" mnemonicParsing="false" text="Modifier" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="bienvenue" alignment="CENTER" layoutX="14.0" layoutY="7.0" text="Bienvenue">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="deconnexionBTN" layoutX="595.0" layoutY="12.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @author Hanfaoui Mariyam  -->
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TP3.interfaceMedecinController">
+   <children>
+      <TabPane layoutY="46.0" prefHeight="461.0" prefWidth="695.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="listePatients" text="Liste des patients">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="512.0" layoutY="14.0" prefHeight="25.0" prefWidth="158.0" promptText="Entrez le RAMQ du patient" />
+                        <Label layoutX="434.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de vos patients">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <ListView fx:id="listePatient" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+          <Tab fx:id="modifierPatient" text="Modifier un patient">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="695.0">
+                     <children>
+                        <TextField fx:id="txtNom" layoutX="150.0" layoutY="66.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="23.0" layoutY="70.0" prefWidth="85.0" text="Nom du patient" />
+                        <TextField fx:id="txtPrenom" layoutX="150.0" layoutY="104.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="23.0" layoutY="108.0" prefHeight="17.0" prefWidth="100.0" text="Prénom du patient" />
+                        <TextField fx:id="txtAdresse" layoutX="150.0" layoutY="143.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="23.0" layoutY="147.0" text="Adresse du patient" />
+                        <Text fx:id="textModification" layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification d'un patient | Choissisez le patient à modifier" wrappingWidth="452.99999197619036">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtVille" layoutX="150.0" layoutY="184.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="22.0" layoutY="188.0" text="Ville du patient" />
+                        <TextField fx:id="txtProvince" layoutX="150.0" layoutY="221.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="22.0" layoutY="225.0" text="Province du patient" />
+                        <TextField fx:id="txtCodePostal" layoutX="150.0" layoutY="260.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="22.0" layoutY="264.0" prefHeight="17.0" prefWidth="128.0" text="Code postal du patient" />
+                        <TextField fx:id="txtNumTel" layoutX="496.0" layoutY="104.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="308.0" layoutY="108.0" prefHeight="16.0" prefWidth="178.0" text="Numéro de téléphone du patient" />
+                        <Label layoutX="308.0" layoutY="146.0" prefHeight="16.0" prefWidth="178.0" text="Date de naissance du patient" />
+                        <TextField fx:id="txtAge" layoutX="496.0" layoutY="181.0" prefHeight="25.0" prefWidth="119.0" />
+                        <Label layoutX="308.0" layoutY="185.0" prefHeight="16.0" prefWidth="178.0" text="Age du patient" />
+                        <Label layoutX="308.0" layoutY="226.0" prefHeight="16.0" prefWidth="178.0" text="Assurance du patient" />
+                        <ComboBox fx:id="cboPatient" layoutX="512.0" layoutY="14.0" onAction="#comboPatient" prefWidth="158.0" />
+                        <Button fx:id="modificationBTN" layoutX="606.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnModifier" text="Modifier" />
+                        <TextField fx:id="txtAssurance" layoutX="496.0" layoutY="222.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker fx:id="DateNaissance" layoutX="496.0" layoutY="143.0" prefHeight="25.0" prefWidth="119.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            <Tab fx:id="donnerConge" text="Donner un congé">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="436.0">
+                     <children>
+                        <TextField layoutX="512.0" layoutY="14.0" prefHeight="25.0" prefWidth="158.0" promptText="Entrez le RAMQ du patient" />
+                        <Label layoutX="434.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="listePatientConge" layoutX="14.0" layoutY="51.0" prefHeight="339.0" prefWidth="666.0" />
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sélectionner le patient pour lui attribuer un congé" wrappingWidth="381.9453125">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="donnerCongeBTN" layoutX="578.0" layoutY="397.0" mnemonicParsing="false" onAction="#btnDonnerConge" text="Donner un congé" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="bienvenue" alignment="CENTER" layoutX="14.0" layoutY="7.0" text="Bienvenue">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="deconnexionBTN" layoutX="595.0" layoutY="12.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+   </children>
+</AnchorPane>
