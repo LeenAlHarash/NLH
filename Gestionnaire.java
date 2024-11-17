@@ -1,12 +1,10 @@
-package TP2;
+package TP3;
 
-import java.io.*;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.io.*;
 
 /**
  * @author Mariyam Hanfaoui && Leen Al Harash && Benjamin Melis
@@ -51,9 +49,9 @@ public class Gestionnaire {
         
         
         // Remplir tableau des patients
-        patients.add(new Patient("200120", "2010-01-03", assurance1, "LaFleur", "Tita", "2004, 10e avenue", "Montréal", "Quebec", "H1X 1J7", "514-098-6453"));
-        patients.add(new Patient("548214", "2000-09-08", assurance2, "Tremblay", "John", "8415, 15e avenue", "Montréal", "Quebec", "H1X 1A6", "438-458-5126"));
-        patients.add(new Patient("698532", "2005-08-10", assurance2, "LaTour", "Mary", "5482, 58e avenue", "Montréal", "Quebec", "H1X 5H1", "438-582-9615"));
+        patients.add(new Patient("200120", "2010-01-03", assurance1, "LaFleur", "Tita", "2004, 10e avenue", "Montréal", "Quebec", "H1X 1J7", "514-098-6453", 14));
+        patients.add(new Patient("548214", "2000-09-08", assurance2, "Tremblay", "John", "8415, 15e avenue", "Montréal", "Quebec", "H1X 1A6", "438-458-5126", 24));
+        patients.add(new Patient("698532", "2005-08-10", assurance2, "LaTour", "Mary", "5482, 58e avenue", "Montréal", "Quebec", "H1X 5H1", "438-582-9615", 19));
         
         
         // Remplir tableau des départements
@@ -124,6 +122,7 @@ public class Gestionnaire {
     }
 
     
+      
     // Méthode qui cherche si le patient existe déjà et le retourne
     public String rechercherPatient(String numRAMQ) {
         for (Patient patient : patients) {
@@ -264,15 +263,15 @@ public class Gestionnaire {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         for (Admission admission : admissions) {
-            //Filtrer les admissions du patient
+            // Filter admissions of the patient
             if (admission.getPatient() != null && admission.getPatient().equals(patient)) {
-                //S'assurer que les dates d’admission et de sortie sont valides
+                // Ensure that both admission and discharge dates are valid
                 if (admission.getDateAdmission() != null && admission.getDateConge() != null) {
-                    //Parse les dates en utilisant le format spécifié
+                    // Parse the dates using the specified format
                     LocalDate dateAdmission = LocalDate.parse(admission.getDateAdmission(), formatter);
                     LocalDate dateConge = LocalDate.parse(admission.getDateConge(), formatter);
 
-                    //Calcul le nombre de jours entre l'admission et la sortie
+                    // Calculate the number of days between admission and discharge
                     long daysBetween = ChronoUnit.DAYS.between(dateAdmission, dateConge);
                     jours += daysBetween > 0 ? daysBetween : 0; // Avoid negative days
                 }
@@ -280,7 +279,45 @@ public class Gestionnaire {
         }
         return jours;  
     }
-
+    
+    // Méthode qui affiche les informations des patients dans un fichier
+    // Moyen de sauvegarder les patients dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
+    public String sauvegarderFichiersPatients(ArrayList<Patient> patients) throws IOException {
+        
+        // Flux de sortie qui écrit les patients dans un fichier pour les patients
+        BufferedWriter fichierPatients = new BufferedWriter(new FileWriter("fichiersPatients.txt"));
+        
+        // Écrit tous les patients de l'arraylist dans le fichier
+        for(Patient patient : patients){
+            fichierPatients.write(patient.toString());
+            fichierPatients.newLine();
+        }
+        
+        // Fermer le flux du fichier
+        fichierPatients.close();
+        
+        return "Fichier crée et les patients ont été sauvegardés!";
+    }
+    
+    // Méthode qui affiche les informations des admissions dans un fichier
+    // Moyen de sauvegarder les admissions dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
+    public String sauvegarderFichiersAdmissions(ArrayList<Admission> admissions) throws IOException {
+        
+        // Flux de sortie qui écrit les patients dans un fichier pour les patients
+        BufferedWriter fichierAdmissions = new BufferedWriter(new FileWriter("fichiersAdmissions.txt"));
+        
+            // Écrit tous les admissions de l'arraylist dans le fichier
+            for(Admission admission : admissions){
+                fichierAdmissions.write(admission.toString());
+                fichierAdmissions.newLine();
+            }
+            
+        // Fermer le flux du fichier
+        fichierAdmissions.close();
+        
+        return "Fichier crée et les admissions ont été sauvegardés!";
+        
+    }
     
     // Méthode qui affiche la facture du patient
     public String afficherFacturePatient(Patient patient) {
@@ -298,43 +335,5 @@ public class Gestionnaire {
             }
         }
         return "Aucune admission trouvée pour ce patient.";
-    }
-    
-    
-    // Méthode qui affiche les informations des patients dans un fichier
-    // Moyen de sauvegarder les patients dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
-    public String sauvegarderFichiersPatients(ArrayList<Patient> patients) throws IOException {
-
-        // Flux de sortie qui écrit les patients dans un fichier pour les patients
-        BufferedWriter fichierPatients = new BufferedWriter(new FileWriter("fichiersPatients.txt"));
-
-        // Écrit tous les patients de l'arraylist dans le fichier
-        for(Patient patient : patients){
-            fichierPatients.write(patient.toString());
-            fichierPatients.newLine();
-        }
-        // Fermer le flux du fichier
-        fichierPatients.close();
-
-        return "Fichier crée et les patients ont été sauvegardés!";
-    }
-
-    
-    // Méthode qui affiche les informations des admissions dans un fichier
-    // Moyen de sauvegarder les admissions dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
-    public String sauvegarderFichiersAdmissions(ArrayList<Admission> admissions) throws IOException {
-
-        // Flux de sortie qui écrit les patients dans un fichier pour les patients
-        BufferedWriter fichierAdmissions = new BufferedWriter(new FileWriter("fichiersAdmissions.txt"));
-
-        // Écrit tous les admissions de l'arraylist dans le fichier
-        for(Admission admission : admissions){
-            fichierAdmissions.write(admission.toString());
-            fichierAdmissions.newLine();
-        }
-        // Fermer le flux du fichier
-        fichierAdmissions.close();
-
-        return "Fichier crée et les admissions ont été sauvegardés!";
     }
 }
