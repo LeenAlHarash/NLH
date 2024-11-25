@@ -1,4 +1,4 @@
-package TP3;
+package projet;
 
 /**
  * @author Mariyam Hanfaoui
@@ -27,6 +27,6 @@ public class Departement {
     // Méthode toString
     @Override
     public String toString() {
-        return "Département : "+idDepartement+" , "+nomDepartement;
+        return idDepartement+" , "+nomDepartement;
     }
 }
