@@ -1,20 +1,21 @@
-package TP3;
+package projet;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Scene;
-//import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.scene.control.Label;
-//import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 
 /**
  * @author Leen Al Harash
  */
 
-public class AuthenController {
+public class interfaceAuthentificationController {
     
     @FXML
     private Label label;
@@ -24,9 +25,6 @@ public class AuthenController {
     
     @FXML 
     private TextField pass;
-//    
-//    @FXML
-//    private TabPane tp;
     /**********************************************************************/
     
     //mdp pour les trois personnes
@@ -44,36 +42,35 @@ public class AuthenController {
         
         //partie admin
         if (username.equals("admin") && password.equals("admin0")) {
-            label.setText("Connexion réussie !");
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("    ")); 
-//            Scene scene = new Scene(fxmlLoader.load());
-//            //redirection
-//            Stage stage = (Stage) tp.getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("interfaceAdmin.fxml"));
+            Scene scene = new Scene(root);
+            Stage s = new Stage();
+            s.setTitle("Gestion des tâches administratives");
+            s.setScene(scene);
+            s.show();
         
         //partie medecin
-        } else if (username.equals("medecin") && password.equals("medecin0")) {
-            label.setText("Connexion réussie !");
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interfaceMedecin.fxml")); 
-//            Scene scene = new Scene(fxmlLoader.load());
-//            //redirection
-//            Stage stage = (Stage) tp.getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
+        } else if (username.equals("medecin") && (password.equals("medecin0") || password.equals("medecin1") || password.equals("medecin2") || password.equals("medecin3") 
+                || password.equals("medecin4"))) {
+            Parent root = FXMLLoader.load(getClass().getResource("interfaceMedecin.fxml"));
+            Scene scene = new Scene(root);
+            Stage s = new Stage();
+            s.setTitle("Gestion des patients du médecin");
+            s.setScene(scene);
+            s.show();
         
         //partie preposé
-        } else if (username.equals("preposer") && password.equals("prep0")) {
-            label.setText("Connexion réussie !");
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreposeSAMPLE.fxml")); 
-//            Scene scene = new Scene(fxmlLoader.load());
-//            //redirection
-//            Stage stage = (Stage) tp.getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
-
+        } else if (username.equals("preposer") && (password.equals("prep0") || password.equals("prep1") || password.equals("prep2") || password.equals("prep3") 
+                || password.equals("prep4"))) {
+            Parent root = FXMLLoader.load(getClass().getResource("interfacePreposer.fxml"));
+            Scene scene = new Scene(root);
+            Stage s = new Stage();
+            s.setTitle("Page de gestion de préposé");
+            s.setScene(scene);
+            s.show();
+        }
         //erreur
-        } else {
+         else {
             label.setText("La connexion a échoué.");
         }
     }
