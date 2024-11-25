@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import javafx.scene.control.TextField;
 
 /**
  * @author Mariyam Hanfaoui && Leen Al Harash && Benjamin Melis
@@ -20,56 +21,47 @@ public class Gestionnaire {
     private double montant, location; // Montants séparés pour les tarifs quotidiens
     private int jours=0; // Jours pour les tarifs quotidiens
     private Medecin medecinConnecte;
-    
-    
     private ArrayList<Admission> admissions; //liste admission
     private ArrayList<Patient> patients; //liste patient
     private ArrayList<Medecin> medecins; //liste medecin
-    private ArrayList<PreposeAdmission> preposer; //liste preposer
+    private ArrayList<PreposeAdmission> preposes; //liste preposer
     private ArrayList<Lit> lits; //liste lits
     private ArrayList<Assurance> assurances; //liste assurance
     private ArrayList<Departement> departements; //liste departement
     private PreposeAdmission preposeConnecte;
 
-    
-    // Méthode constructeur
+    // Méthode constructeur de la classe Gestionnaire
     public Gestionnaire() {
+        this.patients = new ArrayList<>();
+        this.medecins = new ArrayList<>();
+        this.preposes = new ArrayList<>();
+        this.admissions = new ArrayList<>();
+        this.departements = new ArrayList<>();
+        this.lits = new ArrayList<>();
+        this.assurances = new ArrayList<>();
         
-        // Remplir tableau des assurances
         Assurance assurance1 = new Assurance(300, "Beneva");
         Assurance assurance2 = new Assurance(500, "AGECR");
+        Assurance assurance3 = new Assurance(700, "Éducaloi");
+        Assurance assurance4 = new Assurance(900, "Croix Bleue");
         
         assurances.add(assurance1);
         assurances.add(assurance2);
-        
+        assurances.add(assurance3);
+        assurances.add(assurance4);
         
         // Remplir tableau des patients
         Patient p1 = new Patient("200120", "2010-01-03", assurance1, "LaFleur", "Tita", "2004, 10e avenue", "Montréal", "Quebec", "H1X 1J7", "514-098-6453",14);
-        Patient p2 = new Patient("548214", "2000-09-08", assurance2, "Tremblay", "John", "8415, 15e avenue", "Montréal", "Quebec", "H1X 1A6", "438-458-5126",24);
-        Patient p3 = new Patient("698532", "2005-08-10", assurance2, "LaTour", "Mary", "5482, 58e avenue", "Montréal", "Quebec", "H1X 5H1", "438-582-9615",19);
+        Patient p2 = new Patient("548214", "2000-09-08", assurance4, "Tremblay", "John", "8415, 15e avenue", "Montréal", "Quebec", "H1X 1A6", "438-458-5126",24);
+        Patient p3 = new Patient("698532", "2005-08-10", assurance3, "LaTour", "Mary", "5482, 58e avenue", "Montréal", "Quebec", "H1X 5H1", "438-582-9615",19);
         Patient p4 = new Patient("876452", "1999-09-05", assurance1, "Abed", "Fatima", "8734, 16e avenue", "Laval", "Quebec", "H1Q 8W2", "514-176-8723",25);
         Patient p5 = new Patient("165432", "1986-10-31", assurance2, "Abdellah","Aziz","1234, 19e avenue","Laval","Quebec","H1Z 3A9","514-395-0932",38);
-
+        
         patients.add(p1);
         patients.add(p2);
         patients.add(p3);
         patients.add(p4);
         patients.add(p5);
-        
-        
-        // Remplir tableau admissions
-        Admission A1 = new Admission(1, true, "2024-11-01", "2024-11-05", "2024-11-10", true, false, p1, lits.get(0), medecins.get(0), departements.get(1));
-        Admission A2 = new Admission(2, false, "2024-10-15", "2024-10-20", "2024-10-22", false, true, p2, lits.get(1), medecins.get(1), departements.get(2));
-        Admission A3 = new Admission(3, true, "2024-09-10", "2024-09-12", "2024-09-15", true, true, p3, lits.get(2), medecins.get(2), departements.get(4));
-        Admission A4 = new Admission(4, false, "2024-08-05", "2024-08-07", "2024-08-10", false, false, p4, lits.get(3), medecins.get(3), departements.get(0));
-        Admission A5 = new Admission(5, true, "2024-07-20", "2024-07-25", "2024-07-30", true, true, p5, lits.get(4), medecins.get(4), departements.get(1));
-        
-        admissions.add(A1);
-        admissions.add(A2);
-        admissions.add(A3);
-        admissions.add(A4);
-        admissions.add(A5);
-
         
         // Remplir tableau des medecins
         Medecin m1 = new Medecin("1234-5678", "paul@nlh.com", "medecin0", "Paul", "Marie", "2004, 10e avenue", "Montreal", "Quebec", "H3H 2N4", "123-4567");
@@ -77,13 +69,12 @@ public class Gestionnaire {
         Medecin m3 = new Medecin("3456-7890", "lise@nlh.com", "medecin2", "Lise", "Jean-Pierre", "5482, 58e avenue", "Montreal", "Quebec", "L0P 3K1", "345-6789");
         Medecin m4 = new Medecin("4567-8901", "jean@nlh.com", "medecin3", "Jean", "Rosaline", "8734, 16e avenue", "Montreal", "Quebec", "H1J 4P2", "456-7890");
         Medecin m5 = new Medecin("5678-9012", "marc@nlh.com", "medecin4", "Marc", "Derek", "1234, 19e avenue", "Montreal", "Quebec", "P1P 3M3", "567-8901");
-
+        
         medecins.add(m1);
         medecins.add(m2);
         medecins.add(m3);
         medecins.add(m4);
         medecins.add(m5);
-        
         
         // Remplir tableau des preposés
         PreposeAdmission pr1 = new PreposeAdmission(201, "lucie@nlh.com", "prep0", "Lucie", "Aziz", "2004, 10e avenue", "Montreal", "Quebec", "H3H 2N4", "123-4567");
@@ -91,13 +82,12 @@ public class Gestionnaire {
         PreposeAdmission pr3 = new PreposeAdmission(203, "marie@nlh.com", "prep2", "Marie", "Luisan", "8734, 16e avenue", "Montreal", "Quebec", "L0P 3K1", "345-6789");
         PreposeAdmission pr4 = new PreposeAdmission(204, "luca@nlh.com", "prep3", "Luca", "Pierre", "1234, 19e avenue", "Montreal", "Quebec", "P1P 3M3", "456-7890");
         PreposeAdmission pr5 = new PreposeAdmission(205, "nadia@nlh.com", "prep4", "Nadia", "Melisel", "5487, 16e avenue", "Montreal", "Quebec", "H1J 4P2", "567-8901");
-
-        preposer.add(pr1);
-        preposer.add(pr2);
-        preposer.add(pr3);
-        preposer.add(pr4);
-        preposer.add(pr5);
         
+        preposes.add(pr1);
+        preposes.add(pr2);
+        preposes.add(pr3);
+        preposes.add(pr4);
+        preposes.add(pr5);
         
         // Remplir tableau des départements
         Departement departement1 = new Departement(100, "Ob/Gyn");
@@ -112,23 +102,62 @@ public class Gestionnaire {
         departements.add(departement4);
         departements.add(departement5);
         
-        
         // Remplir tableau des lits
-        Lit lit1 = new Lit("1", true, "Standard", departement2);
-        Lit lit2 = new Lit("2", true, "Semi-privé", departement3);
-        Lit lit3 = new Lit("3", false, "Standard", departement5);
-        Lit lit4 = new Lit("4", true, "Semi-privé", departement1);
-        Lit lit5 = new Lit("5", false, "Privé", departement2);
-//        Lit lit6 = new Lit("6", false, "Semi-privé", departement4);
-//        Lit lit7 = new Lit("7", true, "Privé", departement4);
-//        Lit lit8 = new Lit("8", true, "Standard", departement5);
-//        Lit lit9 = new Lit("9", true, "Privé", departement5);
+        Lit lit1 = new Lit("125", true, "Standard", departement2);
+        Lit lit2 = new Lit("285", true, "Semi-privé", departement3);
+        Lit lit3 = new Lit("345", false, "Standard", departement5);
+        Lit lit4 = new Lit("494", true, "Semi-privé", departement1);
+        Lit lit5 = new Lit("548", false, "Privé", departement2);
         
         lits.add(lit1);
         lits.add(lit2);
         lits.add(lit3);
         lits.add(lit4);
         lits.add(lit5);
+
+
+        // Remplir tableau admissions
+        Admission A1 = new Admission(1, true, "2024-11-01", "2024-11-05", "2024-11-10", true, false, p1, lit1, m1, departement1);
+        Admission A2 = new Admission(2, false, "2024-10-15", "null", "null", false, true, p2, lit2, m2, departement2);
+        Admission A3 = new Admission(3, true, "2024-09-10", "2024-09-12", "2024-09-15", true, true, p3, lit3, m3, departement3);
+        Admission A4 = new Admission(4, false, "2024-08-05", "null", "null", false, false, p4, lit4, m4, departement4);
+        Admission A5 = new Admission(5, true, "2024-07-20", "2024-07-25", "2024-07-30", true, true, p5, lit5, m5, departement5);
+        
+        admissions.add(A1);
+        admissions.add(A2);
+        admissions.add(A3);
+        admissions.add(A4);
+        admissions.add(A5);
+    }
+    
+    
+    // Méthodes accesseurs pour les ArrayLists afin de les accéders dans nos contrôleurs
+    public ArrayList<Patient> getPatientsListe(){
+        return this.patients;
+    }
+    
+    public ArrayList<Medecin> getMedecinsListe(){
+        return this.medecins;
+    }
+    
+    public ArrayList<PreposeAdmission> getPreposesListe(){
+        return this.preposes;
+    }
+    
+    public ArrayList<Admission> getAdmissionsListe(){
+        return this.admissions;
+    }
+    
+    public ArrayList<Departement> getDepartementsListe(){
+        return this.departements;
+    }
+    
+    public ArrayList<Lit> getLitsListe(){
+        return this.lits;
+    }
+    
+    public ArrayList<Assurance> getAssurancesListe(){
+        return this.assurances;
     }
     
     
@@ -169,7 +198,9 @@ public class Gestionnaire {
     public String rechercherPatient(String numRAMQ) {
         for (Patient patient : patients) {
             if (patient.getNumRAMQ().equalsIgnoreCase(numRAMQ)) {
-                return "Patient trouvé: " + patient.toString();
+                return "NUMRAMQ: " + patient.getNumRAMQ() + "\nNom du patient: " + patient.getNom() + " " + patient.getPrenom() + "\nDate de naissance: " + patient.getDateNaissance() +
+                        "\nÂge du patient: " + patient.getAge() + "\nAdresse: " + patient.getAdresse() + "\nVille & Province: " + patient.getVille() + ", " + patient.getProvince() 
+                        + "\nCode Postal: " + patient.getCodePostal() + "\nNuméro de téléphone: "+ patient.getTelephone();
             }
         }
         return "Patient non trouvé.";
@@ -323,13 +354,13 @@ public class Gestionnaire {
     }
     
     // Méthode qui affiche la facture du patient
-    public String afficherFacturePatient(Patient patient) {
+    public String afficherFacturePatient(String numRAMQ) {
         for (Admission admission : admissions) {
-            while (admission.getPatient().equals(patient)) {
+            while (admission.getPatient().getNumRAMQ().equals(numRAMQ)) {
                 double factureTotal = (montant + location) * jours;
-                return "Facture pour le patient : " + patient + "\n===================" +
-                        "\nNom du medecin: " + admission.getMedecin() +
-                        "\nNom de departement: " + admission.getDepartement() + "\n " +
+                return "Facture pour le patient : " + admission.getPatient().getNom() + " , " + admission.getPatient().getPrenom() + " ; Numero de RAMQ: " + admission.getPatient().getNumRAMQ()+ "\n===================" +
+                        "\nNom du medecin: " + admission.getMedecin().getNom() + " , " + admission.getMedecin().getPrenom() +
+                        "\nNom de departement: "+ admission.getDepartement() +
                         "\nType de chambre: " + admission.getLit().getType() +
                         "\nTotal Chambre par jour: " + montant + "$" +
                         "\nTotal location televiseur/telephone par jour: " + location + "$" +
