@@ -1,9 +1,7 @@
-package TP3;
-
+package projet;
 import java.util.Objects;
 
-
-/**
+/*
  * @author Leen Al Harash
  */
 
@@ -17,8 +15,7 @@ public class Patient extends Personne {
     // Méthode toString
     @Override
     public String toString(){
-        return super.toString() + "\nNumero RAMQ: " + numRAMQ + "\nDate de Naissance du patient: " + dateNaissance
-                + "" + assurance.toString() + "\nAge du patient: " + age;
+        return "NUMRAMQ: "+numRAMQ;
     }
     
     // Méthode equals
