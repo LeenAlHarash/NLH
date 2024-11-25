@@ -1,4 +1,4 @@
-package tp3;
+package projet;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,13 +15,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import TP3.Patient;
-import TP3.Medecin;
-import TP3.PreposeAdmission;
-import TP3.Assurance;
-import TP3.Admission;
-import TP3.Lit;
-import TP3.Departement;
+import projet.Patient;
+import projet.Medecin;
+import projet.PreposeAdmission;
+import projet.Assurance;
+import projet.Admission;
+import projet.Lit;
+import projet.Departement;
 
 /**
  * @author Benjamin Melis
@@ -35,7 +35,7 @@ public class interfaceAdminController implements Initializable {
     ObservableList<PreposeAdmission> preposes = FXCollections.observableArrayList();
     ObservableList<Admission> admissions = FXCollections.observableArrayList();
 
-    // FXML ListView and ComboBox elements
+    // FXML ListView et ComboBox elements
     @FXML
     ListView adminListePatient;  
     @FXML
@@ -73,7 +73,7 @@ public class interfaceAdminController implements Initializable {
         Patient p4 = new Patient("876452", "1999-09-05", assurance1, "Abed", "Fatima", "8734, 16e avenue", "Laval", "Quebec", "H1Q 8W2", "514-176-8723", 25);
         Patient p5 = new Patient("165432", "1986-10-31", assurance2, "Abdellah", "Aziz", "1234, 19e avenue", "Laval", "Quebec", "H1Z 3A9", "514-395-0932", 38);
 
-        // Doctors (Medecins)
+        // Medecins
         Medecin m1 = new Medecin("1234-5678", "paul@hospital.com", "password", "Paul", "Dr", "Address1", "City1", "Province1", "12345", "123-4567");
         Medecin m2 = new Medecin("2345-6789", "sophie@hospital.com", "password", "Sophie", "Dr", "Address2", "City2", "Province2", "23456", "234-5678");
         Medecin m3 = new Medecin("3456-7890", "lise@hospital.com", "password", "Lise", "Dr", "Address3", "City3", "Province3", "34567", "345-6789");
@@ -103,7 +103,7 @@ public class interfaceAdminController implements Initializable {
         Lit lit5 = new Lit("Room 105", true, "Emergency", dep1);
 
 
-        // Add data to the ObservableLists
+        // Ajouter les données dans le ObservableList
         patients.addAll(p1, p2, p3, p4, p5);
         medecins.addAll(m1, m2, m3, m4, m5);
         preposes.addAll(pr1, pr2, pr3, pr4, pr5);
@@ -114,18 +114,18 @@ public class interfaceAdminController implements Initializable {
                           new Admission(5, true, "2024-07-20", "2024-07-25", "2024-07-30", true, true, p5, lit5, m5, dep5));
 
 
-        // Set the items in the ListViews
+        // Mettre les objets dans le ListView
         adminListePatient.setItems(patients);
         adminListeMedecin.setItems(medecins);
         adminListePrepose.setItems(preposes);
         adminEtatAdmission.setItems(admissions);
 
-        // Set the ComboBox for selecting Medecin
+        // Monter le comboBox pour la sélection d'un medecin
         selectionMedecin.setItems(medecins);
     }
 
 
-    // ComboBox for Medecin
+    // ComboBox pour Medecin
     @FXML
     public void comboMedecin(ActionEvent actionEvent) {
         Medecin selectedMedecin = (Medecin)selectionMedecin.getSelectionModel().getSelectedItem(); 
@@ -145,10 +145,11 @@ public class interfaceAdminController implements Initializable {
     
     @FXML
     public void deconnexion(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AuthenSAMPLE.fxml")); 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interfaceAuthentification.fxml")); 
         Scene scene = new Scene(fxmlLoader.load());
         // Redirection à la page d'authentification à partir du bouton déconnexion
         Stage stage = (Stage)deconnexionBTN.getScene().getWindow();
+        stage.setTitle("Page d'authentification");
         stage.setScene(scene);
         stage.show();
     }
