@@ -1,4 +1,4 @@
-package TP3;
+package projet;
 
 /**
  * @author Mariyam Hanfaoui
@@ -53,6 +53,6 @@ public class Lit {
     // Méthode toString
     @Override
     public String toString(){
-        return "Lit : "+numeroLit+" , "+type+" , "+occupe+" , "+departement;
+        return numeroLit+" , "+type+" , "+occupe+" , "+departement;
     }
 }
