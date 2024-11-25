@@ -1,4 +1,4 @@
-package TP3;
+package projet;
 
 /**
  *@author Leen Al Harash
@@ -16,7 +16,7 @@ public class Personne {
     // Méthode toString
     @Override
     public String toString(){
-        return "Nom du patient: " + nom + ", " + prenom + "\nAdresse: " + adresse + ", " + ville
+        return nom + ", " + prenom + "\nAdresse: " + adresse + ", " + ville
                 + ", " + province + "\nCode Postal: " + codePostal + "\nNuméro de téléphone: " + telephone;
     }
     
