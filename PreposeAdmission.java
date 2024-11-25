@@ -1,13 +1,12 @@
-package TP3;
+package projet;
 
 /**
  * @author Mariyam Hanfaoui && Leen Al Harash
+ * Classe préposé pour l'authentification de l'administrateur pour faire la sélection d'un lit lorsque les patients ne sont pas couverts
+   par une assurance privé et quand le nombre de lits
  */
 
-/* Classe préposé pour l'authentification de l'administrateur pour faire la sélection d'un lit lorsque les patients ne sont pas couverts
-   par une assurance privé et quand le nombre de lits
-*/
-public class PreposeAdmission extends Personne{
+public class PreposeAdmission extends Personne {
     
     // Déclaration des attributs privés
     private final int idPrepose;
@@ -43,5 +42,11 @@ public class PreposeAdmission extends Personne{
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+    
+    // Méthode toString
+    @Override
+    public String toString(){
+        return "ID: " + idPrepose + "\nNom d'utilisateur: " + nomUtilisateur + "\nMot de passe: " + motDePasse + "\nNom du préposé: " + super.toString();
     }
 }
