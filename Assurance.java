@@ -1,4 +1,4 @@
-package TP3;
+package projet;
 
 /**
  * @author Leen Al Harash
@@ -31,12 +31,11 @@ public class Assurance {
 
     public void setNomCompagnie(String nomCompagnie) {
         this.nomCompagnie = nomCompagnie;
-    }   
-
+    }
 
     // Méthode toString
     @Override
     public String toString(){
-        return "\nIDAssurance: " + IDAssurance + "\nNom de l'assurance: " + nomCompagnie;
+        return IDAssurance + " , " + nomCompagnie;
     }
 }
