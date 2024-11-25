@@ -1,4 +1,4 @@
-package TP3;
+package projet;
 
 /**
  * @author Mariyam Hanfaoui
@@ -91,8 +91,6 @@ public class Admission {
     // Méthode toString
     @Override
     public String toString(){
-        return "Admission : "+ patient +" , "+ idAdmission +" , "+ dateAdmission+ ". \nProgramme de Chirurgie: "+
-        chirurgieProgrammee +" , "+ dateChirurgie +".\nMedecin: "+ medecin +" , "+ dateConge +".\nDepartement et lit: "+
-        departement +" , "+ lit + ".\nCommodités supplémentaires: "+ televiseurLoue +" , "+ telephoneLoue + ".";
+        return String.valueOf(idAdmission);
     }
 }
