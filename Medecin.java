@@ -9,7 +9,7 @@ public class Medecin extends Personne{
     private final String numeroPermis;
     private String nomUtilisateur;
     private String motDePasse;
-    
+
     // Méthode toString
     @Override
     public String toString(){
@@ -46,5 +46,5 @@ public class Medecin extends Personne{
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
-    } 
+    }   
 }
