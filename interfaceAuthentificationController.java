@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,12 +24,15 @@ public class interfaceAuthentificationController {
     
     @FXML 
     private TextField pass;
+    
+    // Pour récupérer le nom d'utilisateur du médecin lorsqu'il se connecte
+    public static String nomUserMedecin;
     /**********************************************************************/
     
     //mdp pour les trois personnes
     @FXML 
     void infos(ActionEvent event) {
-        label.setText("admin-admin0" + "\nmedecin-medecin0" + "\npreposer-prep0");
+        label.setText("Voir MDP pour \nles mots de passes");
     }
     
     
@@ -41,7 +43,7 @@ public class interfaceAuthentificationController {
         String password = pass.getText();
         
         //partie admin
-        if (username.equals("admin") && password.equals("admin0")) {
+        if (username.equals("admin") && password.equals("admin")) {
             Parent root = FXMLLoader.load(getClass().getResource("interfaceAdmin.fxml"));
             Scene scene = new Scene(root);
             Stage s = new Stage();
@@ -49,9 +51,12 @@ public class interfaceAuthentificationController {
             s.setScene(scene);
             s.show();
         
-        //partie medecin
-        } else if (username.equals("medecin") && (password.equals("medecin0") || password.equals("medecin1") || password.equals("medecin2") || password.equals("medecin3") 
-                || password.equals("medecin4"))) {
+        // partie medecin
+        } else if (username.equals("paul@nlh.com") && password.equals("medecin0") || username.equals("sophie@nlh.com") && password.equals("medecin1") || 
+                   username.equals("lise@nlh.com") && password.equals("medecin2") || username.equals("jean@nlh.com") && password.equals("medecin3") ||
+                   username.equals("marc@nlh.com") && password.equals("medecin4")) {
+            
+            nomUserMedecin = userN.getText();
             Parent root = FXMLLoader.load(getClass().getResource("interfaceMedecin.fxml"));
             Scene scene = new Scene(root);
             Stage s = new Stage();
@@ -60,8 +65,7 @@ public class interfaceAuthentificationController {
             s.show();
         
         //partie preposé
-        } else if (username.equals("preposer") && (password.equals("prep0") || password.equals("prep1") || password.equals("prep2") || password.equals("prep3") 
-                || password.equals("prep4"))) {
+        } else if (username.equals("prep") && (password.equals("prep"))) {
             Parent root = FXMLLoader.load(getClass().getResource("interfacePreposer.fxml"));
             Scene scene = new Scene(root);
             Stage s = new Stage();
