@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Auteur : Benjamin Melis -->
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -19,8 +21,8 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="532.0" layoutY="14.0" />
-                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                        <TextField fx:id="txtRecherche1" layoutX="483.0" layoutY="14.0" promptText="RAMQ" />
+                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -30,7 +32,8 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <ListView fx:id="adminListePatient" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                        <TextArea fx:id="adminListePatient" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
+                        <Button fx:id="btnRecherchePatients" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherPatient" prefHeight="25.0" prefWidth="30.0" text="🔍" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -38,8 +41,8 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="695.0">
                      <children>
-                        <TextField layoutX="532.0" layoutY="14.0" />
-                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                        <TextField fx:id="txtRecherche2" layoutX="483.0" layoutY="14.0" promptText="# de permis" />
+                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -49,7 +52,8 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <ListView fx:id="adminListeMedecin" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                        <TextArea fx:id="adminListeMedecin" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
+                        <Button fx:id="btnRechercheMedecins" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherMedecin" prefHeight="25.0" prefWidth="30.0" text="🔍" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -57,20 +61,42 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="436.0">
                      <children>
-                        <TextField layoutX="532.0" layoutY="14.0" />
-                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
+                        <TextField fx:id="txtRecherche3" layoutX="483.0" layoutY="14.0" promptText="ID du preposer" />
+                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="adminListePrepose" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
-                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Preposes" wrappingWidth="537.9453125">
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Preposes" wrappingWidth="304.9453125">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
+                        <TextArea fx:id="adminListePrepose" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
+                        <Button fx:id="btnRecherchePreposes" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherPrepose" prefHeight="25.0" prefWidth="30.0" text="🔍" />
                      </children></AnchorPane>
               </content>
+            </Tab>
+            <Tab fx:id="adminEtatAdmissions" text="Etat des Admissions">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtRecherche4" layoutX="483.0" layoutY="14.0" promptText="# d'admission" />
+                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat de Admissions">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextArea fx:id="adminEtatAdmission" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
+                        <Button fx:id="btnRechercheAdmissions" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherAdmission" prefHeight="25.0" prefWidth="30.0" text="🔍" />
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
             <Tab fx:id="adminAjouterMedecin" text="Ajouter un Medecin">
                <content>
@@ -141,27 +167,7 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Button layoutX="598.0" layoutY="371.0" mnemonicParsing="false" text="Ajouter" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="adminEtatAdmissions" text="Etat des Admissions">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <TextField layoutX="532.0" layoutY="14.0" />
-                        <Label layoutX="455.0" layoutY="17.0" text="Rechercher">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat de Admissions">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Text>
-                        <ListView fx:id="adminEtatAdmission" layoutX="22.0" layoutY="49.0" prefHeight="355.0" prefWidth="649.0" />
+                        <Button fx:id="adminAjouter" layoutX="598.0" layoutY="371.0" mnemonicParsing="false" onAction="#adminAjouter" text="Ajouter" />
                      </children>
                   </AnchorPane>
                </content>
@@ -235,9 +241,9 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adminSupprimer" layoutX="578.0" layoutY="381.0" mnemonicParsing="false" text="Supprimer" />
+                        <Button fx:id="adminSupprimer" layoutX="578.0" layoutY="381.0" mnemonicParsing="false" onAction="#adminSupprimer" text="Supprimer" />
                         <ComboBox fx:id="selectionMedecin" layoutX="510.0" layoutY="12.0" onAction="#comboMedecin" prefWidth="150.0" />
-                        <Button fx:id="adminModification" layoutX="490.0" layoutY="381.0" mnemonicParsing="false" text="Modifier" />
+                        <Button fx:id="adminModification" layoutX="490.0" layoutY="381.0" mnemonicParsing="false" onAction="#adminModification" text="Modifier" />
                      </children>
                   </AnchorPane>
                </content>
