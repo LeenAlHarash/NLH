@@ -1,7 +1,9 @@
 package projet;
+
 import java.util.Objects;
 
-/*
+
+/**
  * @author Leen Al Harash
  */
 
@@ -11,14 +13,15 @@ public class Patient extends Personne {
     private String dateNaissance;
     private int age;
     private Assurance assurance;
-    
+    private Medecin medecin;
+
     // Méthode toString
     @Override
     public String toString(){
         return "NUMRAMQ: "+numRAMQ;
     }
     
-    // Méthode equals
+    // Méthode equals - Benjamin
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -27,20 +30,21 @@ public class Patient extends Personne {
         return numRAMQ.equals(patient.numRAMQ);
     }
 
-    // Méthode hashCode
+    // Méthode hashCode - Benjamin
     @Override
     public int hashCode() {
         return Objects.hash(numRAMQ);
     }
     
     // Méthode constructeur
-    public Patient(String numRAMQ, String dateNaissance, Assurance assurance, String nom, String prenom, 
+    public Patient(String numRAMQ, String dateNaissance, Assurance assurance, Medecin medecin, String nom, String prenom, 
             String adresse, String ville, String province, String codePostal, String telephone, int age) {
         super(nom, prenom, adresse, ville, province, codePostal, telephone);
         this.numRAMQ = numRAMQ;
         this.dateNaissance = dateNaissance;
         this.age = age;
         this.assurance = assurance;
+        this.medecin = medecin;
     }
     
     // Méthodes accesseurs
@@ -58,6 +62,10 @@ public class Patient extends Personne {
     
     public Assurance getAssurance(){
         return assurance;
+    }
+    
+    public Medecin getMedecin(){
+        return medecin;
     }
 
     // Méthodes mutateurs
