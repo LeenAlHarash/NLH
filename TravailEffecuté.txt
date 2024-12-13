@@ -1,0 +1,37 @@
+Le travail effecté durant notre petit projet :)
+
+Leen:
+- Classe Assurance
+- Classe Médecin
+- Classe Patient
+- Classe Personne
+- Classe PreposeAdmission
+- Classe Gestionnaire
+- Page d'Authentification
+- Controleur d'Authentification
+- FXML d'Authentification
+- Page de Prepose
+- Controleur de Prepose
+- FXML de Prepose
+- Fichier MDP.txt
+
+===================
+Mariyam:
+- Classe Admission
+- Classe Departement
+- Classe Lit
+- Classe PreposeAdmission
+- Classe Gestionnaire
+- Page de Medecin
+- Controleur de Medecin
+- FXML de Medecin
+- Controleur d'Authentification (Pour l'authentification du médecin spécifiquement)
+
+===================
+Benjamin:
+- Classe Gestionnaire
+- Page d'Admin
+- Controleur d'Admin
+- FXML d'Admin
+
+* On avait pas le temps de faire sauvegarder les dossiers d'admission/patients
