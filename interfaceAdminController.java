@@ -10,40 +10,41 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import projet.Patient;
-import projet.Medecin;
-import projet.PreposeAdmission;
-import projet.Assurance;
-import projet.Admission;
-import projet.Lit;
-import projet.Departement;
 
 /**
  * @author Benjamin Melis
  */
 
 public class interfaceAdminController implements Initializable {
+    
+    Gestionnaire gestionnaire = new Gestionnaire();
 
     // ObservableLists
-    ObservableList<Patient> patients = FXCollections.observableArrayList();
-    ObservableList<Medecin> medecins = FXCollections.observableArrayList();
-    ObservableList<PreposeAdmission> preposes = FXCollections.observableArrayList();
-    ObservableList<Admission> admissions = FXCollections.observableArrayList();
+    ObservableList<Patient> patients = FXCollections.observableArrayList(gestionnaire.getPatientsListe());
+    ObservableList<Medecin> medecins = FXCollections.observableArrayList(gestionnaire.getMedecinsListe());
+    ObservableList<PreposeAdmission> preposes = FXCollections.observableArrayList(gestionnaire.getPreposesListe());
+    ObservableList<Admission> admissions = FXCollections.observableArrayList(gestionnaire.getAdmissionsListe());
+    ObservableList<Departement> departements = FXCollections.observableArrayList(gestionnaire.getDepartementsListe());
+    ObservableList<Lit> lits = FXCollections.observableArrayList(gestionnaire.getLitsListe());
+    ObservableList<Assurance> assurances = FXCollections.observableArrayList(gestionnaire.getAssurancesListe());
 
     // FXML ListView et ComboBox elements
     @FXML
-    ListView adminListePatient;  
+    TextArea adminListePatient;  
     @FXML
-    ListView adminListeMedecin;
+    TextArea adminListeMedecin;
     @FXML
-    ListView adminListePrepose;
+    TextArea adminListePrepose;
     @FXML
-    ListView adminEtatAdmission;
+    TextArea adminEtatAdmission;
     @FXML
     ComboBox<Medecin> selectionMedecin;  
 
@@ -56,69 +57,24 @@ public class interfaceAdminController implements Initializable {
     private TextField fieldNomMedecin1, fieldPrenomMedecin1, fieldNumPermis1, fieldNomUtilisateur1, fieldMotPasse1;
     @FXML
     private TextField fieldAdresseMedecin1, fieldVilleMedecin1, fieldProvinceMedecin1, fieldCodePostalMedecin1, fieldNumTelephoneMedecin1;
+    @FXML
+    private TextField txtRecherche1, txtRecherche2, txtRecherche3, txtRecherche4;
 
     // FXML Buttons 
     @FXML
-    private Button adminModification, adminSupprimer, deconnexionBTN;
+    private Button adminModification, adminSupprimer, deconnexionBTN, adminAjouter, btnRecherchePatients, btnRechercheMedecins, btnRecherchePreposes, btnRechercheAdmissions;
 
     
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Assurance assurance1 = new Assurance(300, "Beneva");
-        Assurance assurance2 = new Assurance(500, "AGECR");
-
-        // Patients
-        Patient p1 = new Patient("200120", "2010-01-03", assurance1, "LaFleur", "Tita", "2004, 10e avenue", "Montréal", "Quebec", "H1X 1J7", "514-098-6453", 14);
-        Patient p2 = new Patient("548214", "2000-09-08", assurance2, "Tremblay", "John", "8415, 15e avenue", "Montréal", "Quebec", "H1X 1A6", "438-458-5126", 24);
-        Patient p3 = new Patient("698532", "2005-08-10", assurance2, "LaTour", "Mary", "5482, 58e avenue", "Montréal", "Quebec", "H1X 5H1", "438-582-9615", 19);
-        Patient p4 = new Patient("876452", "1999-09-05", assurance1, "Abed", "Fatima", "8734, 16e avenue", "Laval", "Quebec", "H1Q 8W2", "514-176-8723", 25);
-        Patient p5 = new Patient("165432", "1986-10-31", assurance2, "Abdellah", "Aziz", "1234, 19e avenue", "Laval", "Quebec", "H1Z 3A9", "514-395-0932", 38);
-
-        // Medecins
-        Medecin m1 = new Medecin("1234-5678", "paul@hospital.com", "password", "Paul", "Dr", "Address1", "City1", "Province1", "12345", "123-4567");
-        Medecin m2 = new Medecin("2345-6789", "sophie@hospital.com", "password", "Sophie", "Dr", "Address2", "City2", "Province2", "23456", "234-5678");
-        Medecin m3 = new Medecin("3456-7890", "lise@hospital.com", "password", "Lise", "Dr", "Address3", "City3", "Province3", "34567", "345-6789");
-        Medecin m4 = new Medecin("4567-8901", "jean@hospital.com", "password", "Jean", "Dr", "Address4", "City4", "Province4", "45678", "456-7890");
-        Medecin m5 = new Medecin("5678-9012", "marc@hospital.com", "password", "Marc", "Dr", "Address5", "City5", "Province5", "56789", "567-8901");
-
-        // Prepose Admission
-        PreposeAdmission pr1 = new PreposeAdmission(201, "lucie@hospital.com", "password", "Lucie", "Prepose", "Address1", "City1", "Province1", "12345", "123-4567");
-        PreposeAdmission pr2 = new PreposeAdmission(202, "jean@hospital.com", "password", "Jean", "Prepose", "Address2", "City2", "Province2", "23456", "234-5678");
-        PreposeAdmission pr3 = new PreposeAdmission(203, "marie@hospital.com", "password", "Marie", "Prepose", "Address3", "City3", "Province3", "34567", "345-6789");
-        PreposeAdmission pr4 = new PreposeAdmission(204, "luc@hospital.com", "password", "Luc", "Prepose", "Address4", "City4", "Province4", "45678", "456-7890");
-        PreposeAdmission pr5 = new PreposeAdmission(205, "nadia@hospital.com", "password", "Nadia", "Prepose", "Address5", "City5", "Province5", "56789", "567-8901");
-
-        // Departments
-        Departement dep1 = new Departement(1, "Cardiology");
-        Departement dep2 = new Departement(2, "Neurology");
-        Departement dep3 = new Departement(3, "Orthopedics");
-        Departement dep4 = new Departement(4, "Pediatrics");
-        Departement dep5 = new Departement(5, "Surgery");
-
-
-        // Lit 
-        Lit lit1 = new Lit("Room 101", false, "Standard", dep1);
-        Lit lit2 = new Lit("Room 102", false, "VIP", dep1);
-        Lit lit3 = new Lit("Room 103", true, "ICU", dep1);
-        Lit lit4 = new Lit("Room 104", false, "Standard", dep1);
-        Lit lit5 = new Lit("Room 105", true, "Emergency", dep1);
-
-
-        // Ajouter les données dans le ObservableList
-        patients.addAll(p1, p2, p3, p4, p5);
-        medecins.addAll(m1, m2, m3, m4, m5);
-        preposes.addAll(pr1, pr2, pr3, pr4, pr5);
-        admissions.addAll(new Admission(1, true, "2024-11-01", "2024-11-05", "2024-11-10", true, false, p1, lit1, m1, dep1),
-                          new Admission(2, false, "2024-10-15", "2024-10-20", "2024-10-22", false, true, p2, lit2, m2, dep2),
-                          new Admission(3, true, "2024-09-10", "2024-09-12", "2024-09-15", true, true, p3, lit3, m3, dep3),
-                          new Admission(4, false, "2024-08-05", "2024-08-07", "2024-08-10", false, false, p4, lit4, m4, dep4),
-                          new Admission(5, true, "2024-07-20", "2024-07-25", "2024-07-30", true, true, p5, lit5, m5, dep5));
-
-
+        
+        // Message initiale du TextArea dans l'onglet Liste des patients
+        adminListePatient.setText("Veuillez recherchez le numéro RAMQ du patient pour voir ces informations.");
+        adminListeMedecin.setText("Veuillez recherchez le numéro de permis du medecin pour voir ces informations.");
+        adminListePrepose.setText("Veuillez recherchez le ID du prepose pour voir ces informations.");
+        adminEtatAdmission.setText("Veuillez recherchez le numéro d'admission ces informations.");
         // Mettre les objets dans le ListView
-        adminListePatient.setItems(patients);
-        adminListeMedecin.setItems(medecins);
-        adminListePrepose.setItems(preposes);
-        adminEtatAdmission.setItems(admissions);
+       
 
         // Monter le comboBox pour la sélection d'un medecin
         selectionMedecin.setItems(medecins);
@@ -129,6 +85,16 @@ public class interfaceAdminController implements Initializable {
     @FXML
     public void comboMedecin(ActionEvent actionEvent) {
         Medecin selectedMedecin = (Medecin)selectionMedecin.getSelectionModel().getSelectedItem(); 
+        
+        if (selectedMedecin == null) {
+        // Show an alert or handle the case where no item is selected
+        Alert noSelectionAlert = new Alert(Alert.AlertType.WARNING);
+        noSelectionAlert.setTitle("Aucune sélection");
+        noSelectionAlert.setHeaderText("Aucun médecin sélectionné");
+        noSelectionAlert.setContentText("Veuillez sélectionner un médecin.");
+        noSelectionAlert.showAndWait();
+        return; // Exit ;a methode si aucun Medecin est selectionner
+    }
 
         fieldNomMedecin1.setText(selectedMedecin.getNom()); 
         fieldPrenomMedecin1.setText(selectedMedecin.getPrenom()); 
@@ -153,16 +119,260 @@ public class interfaceAdminController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    @FXML
+    public void btnRechercherPatient(ActionEvent actionEvent){
+        // Vérifie si le textField n'est pas vide
+        if(!txtRecherche1.getText().isEmpty()){
+            boolean patientTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
+            // Parcourir la liste des patients
+            adminListePatient.setText(gestionnaire.rechercherPatient(txtRecherche1.getText()));
+        // Alerte au cas ou l'utilisateur ne met pas de numRAMQ dans le TextField
+        } else {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Erreur de saisie");
+            a.setHeaderText(null);
+            a.setContentText("Veuillez saisir le numéro RAMQ du patient que vous recherchez.");
+            a.show();
+        }
+    } 
+    
+@FXML
+public void btnRechercherMedecin(ActionEvent actionEvent) {
+    // Vérifie si le textField n'est pas vide
+    if (!txtRecherche2.getText().isEmpty()) {
+        boolean medecinTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
+        // Parcourir la liste des médecins
+        adminListeMedecin.setText(gestionnaire.rechercherMedecin(txtRecherche2.getText()));
+    } else {
+        // Alerte au cas où l'utilisateur ne met pas de numéro de permis dans le TextField
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Erreur de saisie");
+        a.setHeaderText(null);
+        a.setContentText("Veuillez saisir le numéro de permis du médecin que vous recherchez.");
+        a.show();
+    }
+}
+
+@FXML
+public void btnRechercherPrepose(ActionEvent actionEvent) {
+    // Vérifie si le textField n'est pas vide
+    if (!txtRecherche3.getText().isEmpty()) {
+        boolean preposeTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
+        // Parcourir la liste des préposés
+        adminListePrepose.setText(gestionnaire.rechercherPrepose(txtRecherche3.getText()));
+    } else {
+        // Alerte au cas où l'utilisateur ne met pas d'ID dans le TextField
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Erreur de saisie");
+        a.setHeaderText(null);
+        a.setContentText("Veuillez saisir l'ID du préposé que vous recherchez.");
+        a.show();
+    }
+}
+
+
+@FXML
+public void btnRechercherAdmission(ActionEvent actionEvent) {
+    // Vérifie si le textField n'est pas vide
+    if (!txtRecherche4.getText().isEmpty()) {
+        boolean admissionTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
+        // Parcourir la liste des admissions
+        adminEtatAdmission.setText(gestionnaire.rechercherAdmission(txtRecherche4.getText()));        
+    } else {
+        // Alerte au cas où l'utilisateur ne met pas d'ID d'admission dans le TextField
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Erreur de saisie");
+        a.setHeaderText(null);
+        a.setContentText("Veuillez saisir l'ID de l'admission que vous recherchez.");
+        a.show();
+    }
+}
+
 
     
     @FXML
     public void adminModification(ActionEvent event) {
-       
+        
+         // Assurer que le ComboBox est correctement populer avant de continuer
+    if (selectionMedecin.getItems() == null || selectionMedecin.getItems().isEmpty()) {
+        if (medecins != null) {
+            selectionMedecin.setItems(medecins);
+        } else {
+            System.err.println("ObservableList medecins is null!");
+        }
     }
+        // Prendre le medecin selectionner du comboBox
+        Medecin selectedMedecin = selectionMedecin.getSelectionModel().getSelectedItem();
 
-   
+        if (selectedMedecin == null) {
+            // Montrer une alerte si aucun medecin est selectionner
+            Alert noSelectionAlert = new Alert(Alert.AlertType.WARNING);
+            noSelectionAlert.setTitle("Aucune sélection");
+            noSelectionAlert.setHeaderText("Aucun médecin sélectionné");
+            noSelectionAlert.setContentText("Veuillez sélectionner un médecin à modifier.");
+            noSelectionAlert.showAndWait();
+            return;
+        }
+
+        // Creer dialogue de confirmation
+        Alert modifierConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        modifierConfirmationAlert.setTitle("Confirmation de la modification");
+        modifierConfirmationAlert.setHeaderText("Modifier les informations");
+        modifierConfirmationAlert.setContentText("Êtes-vous sûr de vouloir modifier ces informations personnelles?");
+
+        modifierConfirmationAlert.showAndWait().ifPresent(result -> {
+            if (result == ButtonType.OK) {
+                // Update les attributs du Medecin selectionner
+                selectedMedecin.setNom(fieldNomMedecin1.getText());
+                selectedMedecin.setPrenom(fieldPrenomMedecin1.getText());
+                selectedMedecin.setAdresse(fieldAdresseMedecin1.getText());
+                selectedMedecin.setVille(fieldVilleMedecin1.getText());
+                selectedMedecin.setProvince(fieldProvinceMedecin1.getText());
+                selectedMedecin.setCodePostal(fieldCodePostalMedecin1.getText());
+                selectedMedecin.setTelephone(fieldNumTelephoneMedecin1.getText());
+                selectedMedecin.setNomUtilisateur(fieldNomUtilisateur1.getText());
+                selectedMedecin.setMotDePasse(fieldMotPasse1.getText());
+
+
+                // Mettre à jour le TextArea pour afficher les informations du médecin
+            adminListeMedecin.setText(
+                "Nom: " + selectedMedecin.getNom() + "\n" +
+                "Prénom: " + selectedMedecin.getPrenom() + "\n" +
+                "Adresse: " + selectedMedecin.getAdresse() + "\n" +
+                "Ville: " + selectedMedecin.getVille() + "\n" +
+                "Province: " + selectedMedecin.getProvince() + "\n" +
+                "Code Postal: " + selectedMedecin.getCodePostal() + "\n" +
+                "Numéro de téléphone: " + selectedMedecin.getTelephone() + "\n" +
+                "Nom d'utilisateur: " + selectedMedecin.getNomUtilisateur() + "\n" +
+                "Mot de passe: " + selectedMedecin.getMotDePasse() + "\n" +
+                "Numéro de permis: " + selectedMedecin.getNumeroPermis()
+            );
+
+                // Montrer dialogue de succes
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Modification réussie");
+                successAlert.setHeaderText("Informations mises à jour");
+                successAlert.setContentText("Les informations du médecin ont été modifiées avec succès.");
+                successAlert.showAndWait();
+            }
+        });
+    }
+    
+    
+
+
     @FXML
     public void adminSupprimer(ActionEvent event) {
-       
+        // Check si un medecin est selectionner du comboBox
+        Medecin selectedMedecin = selectionMedecin.getSelectionModel().getSelectedItem();
+        if (selectedMedecin == null) {
+            // montrer une alerte si aucun medecin est selectionner
+            Alert noSelectionAlert = new Alert(Alert.AlertType.WARNING);
+            noSelectionAlert.setTitle("Aucune sélection");
+            noSelectionAlert.setHeaderText("Aucun médecin sélectionné");
+            noSelectionAlert.setContentText("Veuillez sélectionner un médecin à supprimer.");
+            noSelectionAlert.showAndWait();
+            return;
+        }
+
+        // Creer une alerte de confirmation
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation de la suppression");
+        confirmationAlert.setHeaderText("Supprimer un médecin");
+        confirmationAlert.setContentText("Êtes-vous sûr de vouloir supprimer ce médecin?");
+
+        confirmationAlert.showAndWait().ifPresent(result -> {
+            if (result == ButtonType.OK) {
+                // enlever un medecin du ObservableList
+                medecins.remove(selectedMedecin);
+
+                // Update le ComboBox et ListView pour refleter le removal
+                selectionMedecin.setItems(medecins);
+                 // Effacer le contenu de TextArea après la suppression
+                adminListeMedecin.setText("Aucun médecin sélectionné.");
+
+                // Montrer un dialogue de confirmation a l'utilisateur
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Suppression réussie");
+                successAlert.setHeaderText("Médecin supprimé");
+                successAlert.setContentText("Le médecin a été supprimé avec succès.");
+                successAlert.showAndWait();
+            }
+        });
+    }
+    
+
+    @FXML
+    public void adminAjouter(ActionEvent event) {
+        if (fieldNumPermis.getText().isEmpty() || fieldMotPasse.getText().isEmpty() || fieldNomMedecin.getText().isEmpty() ||
+            fieldPrenomMedecin.getText().isEmpty() || fieldAdresseMedecin.getText().isEmpty() || 
+            fieldVilleMedecin.getText().isEmpty() || fieldProvinceMedecin.getText().isEmpty() || 
+            fieldCodePostalMedecin.getText().isEmpty() || fieldNumTelephoneMedecin.getText().isEmpty()) {
+
+            Alert missingFieldsAlert = new Alert(Alert.AlertType.WARNING);
+            missingFieldsAlert.setTitle("Champs manquants");
+            missingFieldsAlert.setHeaderText("Des champs obligatoires sont vides");
+            missingFieldsAlert.setContentText("Veuillez remplir tous les champs pour ajouter un médecin.");
+            missingFieldsAlert.showAndWait();
+            return;
+        }
+
+        // Generer la prochaine Cle dynamique(m1, m2, m3)
+        String key = "m" + (medecins.size() + 1);
+
+        // Creer le nouveau Medecin objet
+        Medecin medecin = new Medecin(
+            fieldNumPermis.getText(),
+            fieldNomUtilisateur.getText(),
+            fieldMotPasse.getText(),
+            fieldNomMedecin.getText(),
+            fieldPrenomMedecin.getText(),
+            fieldAdresseMedecin.getText(),
+            fieldVilleMedecin.getText(),
+            fieldProvinceMedecin.getText(),
+            fieldCodePostalMedecin.getText(),
+            fieldNumTelephoneMedecin.getText()
+        );
+
+        // Ajouter le nouveau medecin au HashMap
+        gestionnaire.numerosDeMedecin(key, medecin);            
+
+        // Update le ObservableList pour le ComboBox et ListView
+        medecins.add(medecin);
+        // Mettre à jour le ComboBox et TextArea
+        selectionMedecin.setItems(medecins);
+    
+        // Mettre à jour le contenu de TextArea pour refléter l'ajout
+        adminListeMedecin.setText("Médecin ajouté: \n" + 
+        "Numéro de Permis: " + medecin.getNumeroPermis() + "\n" +
+        "Nom: " + medecin.getNom() + "\n" +
+        "Prénom: " + medecin.getPrenom() + "\n" +
+        "Adresse: " + medecin.getAdresse() + "\n" +
+        "Ville: " + medecin.getVille() + "\n" +
+        "Province: " + medecin.getProvince() + "\n" +
+        "Code Postal: " + medecin.getCodePostal() + "\n" +
+        "Numéro de téléphone: " + medecin.getTelephone() + "\n" +
+        "Nom d'utilisateur: " + medecin.getNomUtilisateur() + "\n" +
+        "Mot de passe: " + medecin.getMotDePasse());
+    
+        // Clear les input fields
+        fieldNumPermis.clear();
+        fieldNomUtilisateur.clear();
+        fieldMotPasse.clear();
+        fieldNomMedecin.clear();
+        fieldPrenomMedecin.clear();
+        fieldAdresseMedecin.clear();
+        fieldVilleMedecin.clear();
+        fieldProvinceMedecin.clear();
+        fieldCodePostalMedecin.clear();
+        fieldNumTelephoneMedecin.clear();
+
+        // Montrer le dialogue succes
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle("Ajout réussi");
+        successAlert.setHeaderText("Médecin ajouté");
+        successAlert.setContentText("Le médecin a été ajouté avec l'identifiant " + key + ".");
+        successAlert.showAndWait();
     }
 }
