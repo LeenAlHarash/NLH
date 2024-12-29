@@ -1,12 +1,11 @@
-Le travail effecté durant notre petit projet :)
-
-Leen:
+Travail de Leen pendant tout le projet :
 - Classe Assurance
 - Classe Médecin
 - Classe Patient
 - Classe Personne
 - Classe PreposeAdmission
 - Classe Gestionnaire
+- Classe de Test Gestionnaire (1 test)
 - Page d'Authentification
 - Controleur d'Authentification
 - FXML d'Authentification
@@ -16,22 +15,25 @@ Leen:
 - Fichier MDP.txt
 
 ===================
-Mariyam:
+Travail de Mariyam pendant tout le projet :
 - Classe Admission
 - Classe Departement
 - Classe Lit
 - Classe PreposeAdmission
 - Classe Gestionnaire
+- Classe de Test Gestionnaire (2 tests)
 - Page de Medecin
 - Controleur de Medecin
 - FXML de Medecin
-- Controleur d'Authentification (Pour l'authentification du médecin spécifiquement)
+- Controleur d'Authentification (Pour l'authentification du médecin spécifiquement ainsi que la variable statique)
+- Controleur du Prepose (Pour la sauvegarde des fichiers des patients ainsi que celles des admissions)
+- Controleur d'Admin (Apporter les corrections necessaires)
+- FXML d'Admin
 
 ===================
-Benjamin:
+Travail de Benjamin pendant tout le projet :
 - Classe Gestionnaire
+- Classe de Test Gestionnaire
 - Page d'Admin
 - Controleur d'Admin
 - FXML d'Admin
-
-* On avait pas le temps de faire sauvegarder les dossiers d'admission/patients
