@@ -49,6 +49,7 @@ public class Lit {
         this.occupe = occupe;
     }
     
+    
     // Méthode toString
     @Override
     public String toString(){
