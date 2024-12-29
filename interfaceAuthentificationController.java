@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
- * @author Leen Al Harash
+ * @author Leen Al Harash && Mariyam Hanfaoui
  */
 
 public class interfaceAuthentificationController {
@@ -32,7 +32,7 @@ public class interfaceAuthentificationController {
     //mdp pour les trois personnes
     @FXML 
     void infos(ActionEvent event) {
-        label.setText("Voir MDP pour \nles mots de passes");
+        label.setText("Voir MDP.txt pour \nles mots de passes");
     }
     
     
