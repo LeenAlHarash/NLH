@@ -41,19 +41,13 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="695.0">
                      <children>
-                        <TextField fx:id="txtRecherche2" layoutX="483.0" layoutY="14.0" promptText="# de permis" />
-                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
                         <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Medecins">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="adminListeMedecin" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
-                        <Button fx:id="btnRechercheMedecins" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherMedecin" prefHeight="25.0" prefWidth="30.0" text="🔍" />
+                        <TextArea fx:id="adminListeMedecin" layoutX="13.0" layoutY="77.0" prefHeight="339.0" prefWidth="668.0" />
+                        <ComboBox fx:id="cboMedecins" layoutX="529.0" layoutY="12.0" onAction="#cboMedecins" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -61,19 +55,13 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="436.0">
                      <children>
-                        <TextField fx:id="txtRecherche3" layoutX="483.0" layoutY="14.0" promptText="ID du preposer" />
-                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
                         <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de Preposes" wrappingWidth="304.9453125">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
                         <TextArea fx:id="adminListePrepose" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
-                        <Button fx:id="btnRecherchePreposes" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherPrepose" prefHeight="25.0" prefWidth="30.0" text="🔍" />
+                        <ComboBox fx:id="cboPreposes" layoutX="529.0" layoutY="12.0" onAction="#cboPreposes" prefWidth="150.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -81,19 +69,13 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtRecherche4" layoutX="483.0" layoutY="14.0" promptText="# d'admission" />
-                        <Label layoutX="405.0" layoutY="17.0" text="Rechercher">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
                         <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat de Admissions">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
                         <TextArea fx:id="adminEtatAdmission" layoutX="13.0" layoutY="48.0" prefHeight="368.0" prefWidth="668.0" />
-                        <Button fx:id="btnRechercheAdmissions" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnRechercherAdmission" prefHeight="25.0" prefWidth="30.0" text="🔍" />
+                        <ComboBox fx:id="cboAdmissions" layoutX="529.0" layoutY="12.0" onAction="#cboAdmissions" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
                </content>
