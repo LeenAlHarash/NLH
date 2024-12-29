@@ -17,7 +17,6 @@ public class Admission {
     private Lit lit;
     private Medecin medecin;
     private Departement departement;
-   
     
     // Méthode constructeur
     public Admission(int idAdmission, boolean chirurgieProgrammee, String dateAdmission, String dateChirurgie, String dateConge, boolean televiseurLoue, boolean telephoneLoue, Patient patient, Lit lit, Medecin medecin, Departement departement) {
@@ -33,7 +32,7 @@ public class Admission {
         this.medecin = medecin;
         this.departement = departement;
     }
-
+    
     // Méthodes accesseurs
     public int getIdAdmission(){
         return idAdmission;
