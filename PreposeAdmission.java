@@ -47,6 +47,6 @@ public class PreposeAdmission extends Personne {
     // Méthode toString
     @Override
     public String toString(){
-        return "ID: " + idPrepose + "\nNom d'utilisateur: " + nomUtilisateur + "\nMot de passe: " + motDePasse + "\nNom du préposé: " + super.toString();
+        return "ID: " + idPrepose;
     }
 }
