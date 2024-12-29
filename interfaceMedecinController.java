@@ -108,7 +108,6 @@ public class interfaceMedecinController implements Initializable {
     @FXML
     private Label bienvenue;
         
-    static Object dateCongeAdmission;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,7 +119,7 @@ public class interfaceMedecinController implements Initializable {
         txtListePatientsConge.setText("Veuillez recherchez le numéro RAMQ du patient pour voir ces informations et lui donner un congé.");
         
         // Changement du Label bienvenue qui inclut le nom d'utilisateur du médecin lorsqu'il s'est authentifié
-        bienvenue.setText("Bienvenue "+interfaceAuthentificationController.nomUserMedecin);
+        bienvenue.setText("Bienvenue "+interfaceAuthentificationController.nomUserMedecin);        
         
         // Affichage des informations du médecin, dans l'onglet Modifier informations, afin qu'il puisse les modifier
         for(Medecin medecin : medecins){
@@ -286,6 +285,8 @@ public class interfaceMedecinController implements Initializable {
                 txtAdresse.setText(txtAdresse.getText());
                 txtNumTel.setText(txtNumTel.getText());
                 txtUtilisateur.setText(txtUtilisateur.getText());
+                // Changement du label bievenue si l'utilisateur a été modifier
+                bienvenue.setText("Bienvenue "+txtUtilisateur.getText());
                 txtMdp.setText(txtMdp.getText());
                 // Dialog qui dit confirme à l'utilisateur que les modifications ont été faites
                 Dialog<String> modReussi = new Dialog<>();
