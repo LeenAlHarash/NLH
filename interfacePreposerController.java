@@ -2,6 +2,8 @@ package projet;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -75,7 +77,8 @@ public class interfacePreposerController {
     ObservableList<Lit> lits = FXCollections.observableArrayList(gestionnaire.getLitsListe());
     ObservableList<Assurance> assurance = FXCollections.observableArrayList(gestionnaire.getAssurancesListe());
     /**************************************************************************************************/
-
+    
+        
     @FXML
     public void initialize() {
         listePatient.setText("\nVeuillez saisir le numéro RAMQ du patient pour voir ses informations.");
@@ -186,7 +189,7 @@ public class interfacePreposerController {
     
     
     //s'assurer que l'ajout de patient est complet - tab4
-    public void creerPatientBtn(ActionEvent event){    
+    public void creerPatientBtn(ActionEvent event) throws IOException{    
         //Erreur
         if (txtRAMQ.getText().isEmpty() || txtDateNaissance.getValue() == null || cboAssurancesCr.getValue() == null || 
             cboMedecinCr.getValue() == null || txtNom.getText().isEmpty() || txtPrenom.getText().isEmpty() || 
@@ -223,6 +226,8 @@ public class interfacePreposerController {
                 gestionnaire.ajouterPatient(p);
                 //ajouter le patient - liste d'admission
                 patients.add(p);
+                // sauvegarder le patient ajouté dans le fichier des patients
+                gestionnaire.sauvegarderFichiersPatients(patients);
 
                 //alert d'enregistrement
                 Alert b = new Alert(Alert.AlertType.INFORMATION);
@@ -235,7 +240,7 @@ public class interfacePreposerController {
 
     
     //s'assurer que l'admission et finalizer - tab 5 
-    public void finalizerBtn(){
+    public void finalizerBtn() throws IOException {
         if (cboPatientsA == null || combolit == null || combodepartement == null || comboMedecinAdmission == null ||
             dateAdmission.getValue() == null || chirurgOui == null || chirurgNon == null ||
             Televiseur == null || Telephone == null){
@@ -277,6 +282,13 @@ public class interfacePreposerController {
                     gestionnaire.ajouterAdmission(ad);
                     //ajouter dans le combobox d'admissions
                     admissions.add(ad);
+                    
+                    // sauvegarder le patient ajouté dans le fichier des patients, try-catch proposé par le programme
+                    try {
+                        gestionnaire.sauvegarderFichiersAdmissions(admissions);
+                    } catch (IOException ex) {
+                        Logger.getLogger(interfacePreposerController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     //alert d'enregistrement
                     Alert b = new Alert(Alert.AlertType.INFORMATION);
