@@ -14,13 +14,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * @author Benjamin Melis
+ * @author Benjamin Melis && Mariyam Hanfaoui
  */
 
 public class interfaceAdminController implements Initializable {
@@ -46,7 +45,10 @@ public class interfaceAdminController implements Initializable {
     @FXML
     TextArea adminEtatAdmission;
     @FXML
-    ComboBox<Medecin> selectionMedecin;  
+    ComboBox<Medecin> selectionMedecin;
+    @FXML
+    private ComboBox cboMedecins, cboPreposes, cboAdmissions; // Mariyam Hanfaoui, j'ai mis des comboBox parce que ces méthodes ne fonctionnait pas
+    // C'est-à-dire que si on ajoutait/supprimer un médecin, ces modifications ne se montrait pas lorsqu'on effectuait une recherche
 
     // FXML TextField elements 
     @FXML
@@ -58,13 +60,13 @@ public class interfaceAdminController implements Initializable {
     @FXML
     private TextField fieldAdresseMedecin1, fieldVilleMedecin1, fieldProvinceMedecin1, fieldCodePostalMedecin1, fieldNumTelephoneMedecin1;
     @FXML
-    private TextField txtRecherche1, txtRecherche2, txtRecherche3, txtRecherche4;
+    private TextField txtRecherche1, txtRecherche2, txtRecherche3; // Modification des numéros par Mariyam Hanfaoui
 
     // FXML Buttons 
     @FXML
     private Button adminModification, adminSupprimer, deconnexionBTN, adminAjouter, btnRecherchePatients, btnRechercheMedecins, btnRecherchePreposes, btnRechercheAdmissions;
 
-    
+    // Alerte qui n'arretait pas de pop-up supprimé par Mariyam Hanfaoui
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -73,29 +75,25 @@ public class interfaceAdminController implements Initializable {
         adminListeMedecin.setText("Veuillez recherchez le numéro de permis du medecin pour voir ces informations.");
         adminListePrepose.setText("Veuillez recherchez le ID du prepose pour voir ces informations.");
         adminEtatAdmission.setText("Veuillez recherchez le numéro d'admission ces informations.");
-        // Mettre les objets dans le ListView
-       
 
         // Monter le comboBox pour la sélection d'un medecin
         selectionMedecin.setItems(medecins);
+        
+        // Mettre le comboBox pour l'affichage des informations du médecin dans l'onglet Liste Médecins - Mariyam Hanfaoui
+        cboMedecins.setItems(medecins);
+        
+        // Mettre le comboBox pour l'affichage des informations du préposé dans l'onglet Liste Préposés - Mariyam Hanfaoui
+        cboPreposes.setItems(preposes);
+        
+        // Mettre le comboBox pour l'affichage des informations du médecin dans l'onglet État des admissions - Mariyam Hanfaoui
+        cboAdmissions.setItems(admissions);
     }
 
-
-    // ComboBox pour Medecin
+    // ComboBox pour le médecin dans l'onglet Modifier/Supprimer
     @FXML
     public void comboMedecin(ActionEvent actionEvent) {
         Medecin selectedMedecin = (Medecin)selectionMedecin.getSelectionModel().getSelectedItem(); 
-        
-        if (selectedMedecin == null) {
-        // Show an alert or handle the case where no item is selected
-        Alert noSelectionAlert = new Alert(Alert.AlertType.WARNING);
-        noSelectionAlert.setTitle("Aucune sélection");
-        noSelectionAlert.setHeaderText("Aucun médecin sélectionné");
-        noSelectionAlert.setContentText("Veuillez sélectionner un médecin.");
-        noSelectionAlert.showAndWait();
-        return; // Exit ;a methode si aucun Medecin est selectionner
-    }
-
+        // TextFields qui sont rempli par les informations du médecin
         fieldNomMedecin1.setText(selectedMedecin.getNom()); 
         fieldPrenomMedecin1.setText(selectedMedecin.getPrenom()); 
         fieldAdresseMedecin1.setText(selectedMedecin.getAdresse());
@@ -105,9 +103,55 @@ public class interfaceAdminController implements Initializable {
         fieldNumTelephoneMedecin1.setText(selectedMedecin.getTelephone()); 
         fieldNomUtilisateur1.setText(selectedMedecin.getNomUtilisateur()); 
         fieldMotPasse1.setText(selectedMedecin.getMotDePasse()); 
-        fieldNumPermis1.setText(selectedMedecin.getNumeroPermis()); 
+        fieldNumPermis1.setText(selectedMedecin.getNumeroPermis());
     }
-
+    
+    // ComboBox pour les médecins dans l'onglet Liste Medecins - Mariyam Hanfaoui
+    @FXML
+    public void cboMedecins(ActionEvent actionEvent){
+        Medecin medecin = (Medecin)cboMedecins.getSelectionModel().getSelectedItem();
+        adminListeMedecin.setText("Numéro de Permis: " + medecin.getNumeroPermis() +
+            "\nNom du Médecin: " + medecin.getNom() + " " + medecin.getPrenom() +
+            "\nAdresse: " + medecin.getAdresse() +
+            "\nVille: " + medecin.getVille() +
+            "\nProvince: " + medecin.getProvince() +
+            "\nCode Postal: " + medecin.getCodePostal() +
+            "\nNuméro de téléphone: " + medecin.getTelephone() +
+            "\nNom d'utilisateur: " + medecin.getNomUtilisateur() +
+            "\nMot de passe: " + medecin.getMotDePasse());
+    }
+    
+    // ComboBox pour les préposés dans l'onglet Liste des préposés - Mariyam Hanfaoui
+    @FXML
+    public void cboPreposes(ActionEvent actionEvent){
+        PreposeAdmission prepose = (PreposeAdmission)cboPreposes.getSelectionModel().getSelectedItem();
+        adminListePrepose.setText("ID du Préposé: " + prepose.getIdPrepose() +
+                        "\nNom du Préposé: " + prepose.getNom() + " " + prepose.getPrenom() +
+                        "\nNom d'utilisateur: " + prepose.getNomUtilisateur() +
+                        "\nMot de passe: " + prepose.getMotDePasse() +
+                        "\nAdresse: " + prepose.getAdresse() +
+                        "\nVille: " + prepose.getVille() +
+                        "\nProvince: " + prepose.getProvince() +
+                        "\nCode Postal: " + prepose.getCodePostal() +
+                        "\nNuméro de téléphone: " + prepose.getTelephone());
+    }
+    
+    // ComboBox pour les états d'admissions dans l'onglet État des admissions - Mariyam Hanfaoui
+    @FXML
+    public void cboAdmissions(ActionEvent actionEvent){
+        Admission admission = (Admission)cboAdmissions.getSelectionModel().getSelectedItem();
+        adminEtatAdmission.setText("ID d'Admission: " + admission.getIdAdmission() +
+                        "\nDate d'admission: " + admission.getDateAdmission() +
+                        "\nChirurgie programmée: " + admission.getChirurgieProgramee() +
+                        "\nDate de chirurgie: " + admission.getDateChirurgie() +
+                        "\nDate de congé: " + admission.getDateConge() +
+                        "\nTéléviseur loué: " + admission.getTeleviseurLoue() +
+                        "\nTéléphone loué: " + admission.getTelephoneLoue() +
+                        "\nPatient: " + admission.getPatient().getNom() + " " + admission.getPatient().getPrenom() +
+                        "\nMédecin responsable du patient: " + admission.getMedecin().getNom() + " " + admission.getMedecin().getPrenom() +
+                        "\nDépartement: " + admission.getDepartement() +
+                        "\nNuméro du lit: " + admission.getLit().getNumeroLit());
+    }
     
     @FXML
     public void deconnexion(ActionEvent event) throws IOException {
@@ -135,61 +179,7 @@ public class interfaceAdminController implements Initializable {
             a.setContentText("Veuillez saisir le numéro RAMQ du patient que vous recherchez.");
             a.show();
         }
-    } 
-    
-@FXML
-public void btnRechercherMedecin(ActionEvent actionEvent) {
-    // Vérifie si le textField n'est pas vide
-    if (!txtRecherche2.getText().isEmpty()) {
-        boolean medecinTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
-        // Parcourir la liste des médecins
-        adminListeMedecin.setText(gestionnaire.rechercherMedecin(txtRecherche2.getText()));
-    } else {
-        // Alerte au cas où l'utilisateur ne met pas de numéro de permis dans le TextField
-        Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setTitle("Erreur de saisie");
-        a.setHeaderText(null);
-        a.setContentText("Veuillez saisir le numéro de permis du médecin que vous recherchez.");
-        a.show();
     }
-}
-
-@FXML
-public void btnRechercherPrepose(ActionEvent actionEvent) {
-    // Vérifie si le textField n'est pas vide
-    if (!txtRecherche3.getText().isEmpty()) {
-        boolean preposeTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
-        // Parcourir la liste des préposés
-        adminListePrepose.setText(gestionnaire.rechercherPrepose(txtRecherche3.getText()));
-    } else {
-        // Alerte au cas où l'utilisateur ne met pas d'ID dans le TextField
-        Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setTitle("Erreur de saisie");
-        a.setHeaderText(null);
-        a.setContentText("Veuillez saisir l'ID du préposé que vous recherchez.");
-        a.show();
-    }
-}
-
-
-@FXML
-public void btnRechercherAdmission(ActionEvent actionEvent) {
-    // Vérifie si le textField n'est pas vide
-    if (!txtRecherche4.getText().isEmpty()) {
-        boolean admissionTrouve = false; // Attribut boolean pour éviter d'avoir une boucle infinie
-        // Parcourir la liste des admissions
-        adminEtatAdmission.setText(gestionnaire.rechercherAdmission(txtRecherche4.getText()));        
-    } else {
-        // Alerte au cas où l'utilisateur ne met pas d'ID d'admission dans le TextField
-        Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setTitle("Erreur de saisie");
-        a.setHeaderText(null);
-        a.setContentText("Veuillez saisir l'ID de l'admission que vous recherchez.");
-        a.show();
-    }
-}
-
-
     
     @FXML
     public void adminModification(ActionEvent event) {
@@ -258,9 +248,6 @@ public void btnRechercherAdmission(ActionEvent actionEvent) {
             }
         });
     }
-    
-    
-
 
     @FXML
     public void adminSupprimer(ActionEvent event) {
@@ -286,12 +273,8 @@ public void btnRechercherAdmission(ActionEvent actionEvent) {
             if (result == ButtonType.OK) {
                 // enlever un medecin du ObservableList
                 medecins.remove(selectedMedecin);
-
                 // Update le ComboBox et ListView pour refleter le removal
                 selectionMedecin.setItems(medecins);
-                 // Effacer le contenu de TextArea après la suppression
-                adminListeMedecin.setText("Aucun médecin sélectionné.");
-
                 // Montrer un dialogue de confirmation a l'utilisateur
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Suppression réussie");
@@ -301,7 +284,6 @@ public void btnRechercherAdmission(ActionEvent actionEvent) {
             }
         });
     }
-    
 
     @FXML
     public void adminAjouter(ActionEvent event) {
@@ -341,10 +323,10 @@ public void btnRechercherAdmission(ActionEvent actionEvent) {
         // Update le ObservableList pour le ComboBox et ListView
         medecins.add(medecin);
         // Mettre à jour le ComboBox et TextArea
-        selectionMedecin.setItems(medecins);
+    selectionMedecin.setItems(medecins);
     
-        // Mettre à jour le contenu de TextArea pour refléter l'ajout
-        adminListeMedecin.setText("Médecin ajouté: \n" + 
+    // Mettre à jour le contenu de TextArea pour refléter l'ajout
+    adminListeMedecin.setText("Médecin ajouté: \n" + 
         "Numéro de Permis: " + medecin.getNumeroPermis() + "\n" +
         "Nom: " + medecin.getNom() + "\n" +
         "Prénom: " + medecin.getPrenom() + "\n" +
