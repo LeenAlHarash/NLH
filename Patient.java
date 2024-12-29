@@ -1,7 +1,5 @@
 package projet;
-
 import java.util.Objects;
-
 
 /**
  * @author Leen Al Harash
@@ -20,6 +18,7 @@ public class Patient extends Personne {
     public String toString(){
         return "NUMRAMQ: "+numRAMQ;
     }
+    
     
     // Méthode equals - Benjamin
     @Override
