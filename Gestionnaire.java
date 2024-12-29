@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.HashMap;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 /**
@@ -171,7 +172,6 @@ public class Gestionnaire {
         return this.assurances;
     }
     
-    
     // Méthode qui ajoute un patient à la liste des patients
     public String ajouterPatient(Patient patient) {
         // Si le nombre de patients n'a pas été atteint
@@ -185,7 +185,6 @@ public class Gestionnaire {
         }
         return "Il n'y a plus de places.";
     }
-    
     
     // Méthode pour l'ajout d'un patient à un département précis selon s'ils ont une chirurgie ou pas
     public String ajouterPatientDepartement(Patient patient) {
@@ -203,7 +202,6 @@ public class Gestionnaire {
         }
         return "Patient non trouvé.";
     }
-
     
     // Méthode qui cherche si le patient existe déjà et le retourne
     public String rechercherPatient(String numRAMQ) {
@@ -217,64 +215,6 @@ public class Gestionnaire {
         return "\nPatient non trouvé.";
     }
     
-    
-    // Méthode qui cherche si le medecin existe déjà et le retourne
-    public String rechercherMedecin(String numeroPermis){
-    for (Medecin medecin : medecins) {
-            // Vérifie si le medecin a le même numero de permis que celui recherché dans le textField
-            if (medecin.getNumeroPermis().equalsIgnoreCase(numeroPermis)) {
-                return "Numéro de Permis: " + medecin.getNumeroPermis() +
-                        "\nNom du Médecin: " + medecin.getNom() + " " + medecin.getPrenom() +
-                        "\nAdresse: " + medecin.getAdresse() +
-                        "\nVille: " + medecin.getVille() +
-                        "\nProvince: " + medecin.getProvince() +
-                        "\nCode Postal: " + medecin.getCodePostal() +
-                        "\nNuméro de téléphone: " + medecin.getTelephone() +
-                        "\nNom d'utilisateur: " + medecin.getNomUtilisateur() +
-                        "\nMot de passe: " + medecin.getMotDePasse();
-            }
-        }
-    return "\nMedecin non trouvé.";
-    }
-    
-    // Méthode qui cherche si le prepose existe déjà et le retourne
-    public String rechercherPrepose(String idPrepose){
-    for (PreposeAdmission prepose : preposes) {
-            if (String.valueOf(prepose.getIdPrepose()).equalsIgnoreCase(idPrepose)){
-                return "ID du Préposé: " + prepose.getIdPrepose() +
-                        "\nNom du Préposé: " + prepose.getNom() + " " + prepose.getPrenom() +
-                        "\nNom d'utilisateur: " + prepose.getNomUtilisateur() +
-                        "\nMot de passe: " + prepose.getMotDePasse() +
-                        "\nAdresse: " + prepose.getAdresse() +
-                        "\nVille: " + prepose.getVille() +
-                        "\nProvince: " + prepose.getProvince() +
-                        "\nCode Postal: " + prepose.getCodePostal() +
-                        "\nNuméro de téléphone: " + prepose.getTelephone();
-            }
-        }
-    return "\nPrepose non trouvé.";
-    }
-    
-    
-    // Méthode qui cherche si l'admission existe déjà et le retourne
-    public String rechercherAdmission(String idAdmission){
-    for (Admission admission : admissions) {
-            if (String.valueOf(admission.getIdAdmission()).equalsIgnoreCase(idAdmission)) {
-                return "ID d'Admission: " + admission.getIdAdmission() +
-                        "\nDate d'admission: " + admission.getDateAdmission() +
-                        "\nChirurgie programmée: " + admission.getChirurgieProgramee() +
-                        "\nDate de chirurgie: " + admission.getDateChirurgie() +
-                        "\nDate de congé: " + admission.getDateConge() +
-                        "\nTéléviseur loué: " + admission.getTeleviseurLoue() +
-                        "\nTéléphone loué: " + admission.getTelephoneLoue() +
-                        "\nPatient: " + admission.getPatient().getNom() + " " + admission.getPatient().getPrenom() +
-                        "\nMédecin responsable: " + admission.getMedecin().getNom() + " " + admission.getMedecin().getPrenom();
-            }
-        }
-    return "\nAdmission non trouvé.";
-    }        
-    
-    
     // Méthode qui ajoute une admission du patient si il existe
     public String ajouterAdmission(Admission admission) {
         if (!admissions.contains(admission)) {
@@ -285,7 +225,6 @@ public class Gestionnaire {
         }
     }
     
-    
     // Méthode qui ajoute un département à la liste des départements
     public String ajouterDepartement(Departement departement) {
         if (departement != null) {
@@ -294,7 +233,6 @@ public class Gestionnaire {
         }
         return "Département non valide.";
     }
-    
     
     // Méthode qui ajoute à une admission selon les conditions de l'assurance
     public String ajouterLitAdmission(Admission admission) {
@@ -344,7 +282,6 @@ public class Gestionnaire {
         return "Il n'y a plus de places"; // Message si pas de places disponibles
     }
     
-            
     // Méthode qui permet au médecin de donner un congé au patient recherché
     public String donnerConge(String numRAMQ, String date) {
         // Si le médecin est connecté
@@ -361,7 +298,6 @@ public class Gestionnaire {
         return "Le médecin n'est pas connecté";
     }
     
-    
     // Méthode qui ajoute un medecin à la liste des medecins
     // Lorsqu'un médecin se connecte, on ajoute le médecin connecté à la liste des médecins
     public String ajouterMedecin(Medecin medecin) {
@@ -372,13 +308,11 @@ public class Gestionnaire {
             return "Ce médecin existe déjà dans la liste.";
         }
     }
-
     
     //Methode pour aider a continuer les numeros des medecins ajouter (m1, m2, m3, etc)
     public void numerosDeMedecin(String key, Medecin medecin) {
         medecinMap.put(key, medecin);
     }
-    
     
     // Méthode pour les tarifs quotidiennes de chambres
     public double tarifsQuotidienneChambre(Admission admissions){
@@ -390,7 +324,6 @@ public class Gestionnaire {
         }
         return montant;
     }
-    
     
     // Méthode pour les tarifs quotidiennes pour locations
     public double tarifsQuotidienneLocations(Admission admissions){
@@ -405,7 +338,6 @@ public class Gestionnaire {
         return location;
     }
     
-    
     // Methode pour calculer le nombre de jours entre l'admission et la dateconge
     public int calculeJour(Patient patient) {  
         int jours = 0;
@@ -418,12 +350,12 @@ public class Gestionnaire {
                 if (admission.getDateAdmission() == null) {
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setTitle("Erreur!");
-                    a.setContentText("Il n'y a pas de date d'admission pour ce patient. Veulliez lui donner un admission.");
+                    a.setContentText("Il n'y a pas de date d'admission pour ce patient. Veuillez lui donner une admission.");
                     a.show();
                 } else if (admission.getDateConge() == null) {
                     Alert b = new Alert(Alert.AlertType.ERROR);
                     b.setTitle("Erreur!");
-                    b.setContentText("Il n'y a pas de date congé pour ce patient. Veuillez demander au medecin de liberer le patient pour avoir sa facture complete.") ;
+                    b.setContentText("Il n'y a pas de date congé pour ce patient. Veuillez demander au medecin de liberer le patient afin de voir les montants de la facture.") ;
                     b.show();
                 } else {
                     LocalDate dateAdmission = LocalDate.parse(admission.getDateAdmission(), format);
@@ -436,7 +368,6 @@ public class Gestionnaire {
         }
         return jours;  
     }
-
    
     // Méthode qui affiche la facture du patient selon le numRAMQ rechercher
     public String afficherFacturePatient(String numRAMQ) {
@@ -457,18 +388,21 @@ public class Gestionnaire {
         }
         return "\nAucune admission trouvée pour ce patient.";
     }
-
-        
+    
     // Méthode qui affiche les informations des patients dans un fichier
-    // Moyen de sauvegarder les patients dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
-    public String sauvegarderFichiersPatients(ArrayList<Patient> patients) throws IOException {
+    // Moyen de sauvegarder les patients dans un fichier
+    // Changement du paramètre d'un ArrayList à un ObservableList parce qu'on effectue les changements avec un ObservableList
+    public String sauvegarderFichiersPatients(ObservableList<Patient> patients) throws IOException {
 
         // Flux de sortie qui écrit les patients dans un fichier pour les patients
         BufferedWriter fichierPatients = new BufferedWriter(new FileWriter("fichiersPatients.txt"));
 
         // Écrit tous les patients de l'arraylist dans le fichier
         for(Patient patient : patients){
-            fichierPatients.write(patient.toString());
+            fichierPatients.write("NUMRAMQ: " + patient.getNumRAMQ() + "\nNom du patient: " + patient.getNom() + " " + patient.getPrenom() + "\nDate de naissance: " + patient.getDateNaissance() +
+                        "\nÂge du patient: " + patient.getAge() + "\nAdresse: " + patient.getAdresse() + "\nVille & Province: " + patient.getVille() + ", " + patient.getProvince() 
+                        + "\nCode Postal: " + patient.getCodePostal() + "\nNuméro de téléphone: "+ patient.getTelephone() + "\nAssurance: " + patient.getAssurance());
+            fichierPatients.write("\n");
             fichierPatients.newLine();
         }
         // Fermer le flux du fichier
@@ -476,16 +410,29 @@ public class Gestionnaire {
 
         return "Fichier crée et les patients ont été sauvegardés!";
     }
+    
     // Méthode qui affiche les informations des admissions dans un fichier
-    // Moyen de sauvegarder les admissions dans un fichier (On planifie d'associer cet méthode à un bouton dans l'interface, lorsque le médecin est connecté)
-    public String sauvegarderFichiersAdmissions(ArrayList<Admission> admissions) throws IOException {
+    // Moyen de sauvegarder les admissions dans un fichier
+    // Changement du paramètre d'un ArrayList à un ObservableList parce qu'on effectue les changements avec un ObservableList
+    public String sauvegarderFichiersAdmissions(ObservableList<Admission> admissions) throws IOException {
 
         // Flux de sortie qui écrit les patients dans un fichier pour les patients
         BufferedWriter fichierAdmissions = new BufferedWriter(new FileWriter("fichiersAdmissions.txt"));
 
         // Écrit tous les admissions de l'arraylist dans le fichier
         for(Admission admission : admissions){
-            fichierAdmissions.write(admission.toString());
+            fichierAdmissions.write("ID d'Admission: " + admission.getIdAdmission() +
+                                    "\nDate d'admission: " + admission.getDateAdmission() +
+                                    "\nChirurgie programmée: " + admission.getChirurgieProgramee() +
+                                    "\nDate de chirurgie: " + admission.getDateChirurgie() +
+                                    "\nDate de congé: " + admission.getDateConge() +
+                                    "\nTéléviseur loué: " + admission.getTeleviseurLoue() +
+                                    "\nTéléphone loué: " + admission.getTelephoneLoue() +
+                                    "\nPatient: " + admission.getPatient().getNom() + " " + admission.getPatient().getPrenom() +
+                                    "\nMédecin responsable du patient: " + admission.getMedecin().getNom() + " " + admission.getMedecin().getPrenom() +
+                                    "\nDépartement de l'admission: " + admission.getDepartement() +
+                                    "\nLit de l'admission :" + admission.getLit());
+            fichierAdmissions.write("\n");
             fichierAdmissions.newLine();
         }
         // Fermer le flux du fichier
